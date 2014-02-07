@@ -25,30 +25,30 @@ header {
   .social {
     display: inline-block;
 
-        // Match responsive h3 font size for social icons
-        font-size: $h3-font-size - rem-calc(5);
-        @media #{$medium-up} {
-          font-size: $h3-font-size;
-        }
-        
-        // Override LinkedIn plugin icon style (see also JS)
-        .li-connect-widget .li-connect-mark {
-          background: none !important;
-          height: auto !important;
-          width: auto !important;
-          line-height: inherit !important;
-          display: block !important;
-        }
-        .li-connect-widget.pending .li-connect-mark {
-          background: image-url("loader.gif") 0 50% / auto 8px no-repeat !important;
-        }
-        
-        // Make sure LinkedIn plugin iframe only shows when hovering over icon or widget (required click to close otherwise)
-        .IN-widget iframe {
-          display: none !important;
-        }
-        .IN-widget:hover iframe {
-          display: block !important;
-        }
-      }   
+    // Match responsive h3 font size for social icons
+    font-size: $h3-font-size - rem-calc(5);
+    @media #{$medium-up} {
+      font-size: $h3-font-size;
     }
+    
+    // Override LinkedIn plugin icon style (see also JS)
+    .li-connect-widget .li-connect-mark {
+      background: none !important;
+      height: auto !important;
+      width: auto !important;
+      line-height: inherit !important;
+      display: block !important;
+    }
+    .li-connect-widget.pending .li-connect-mark {
+      background: image-url("loader.gif") 0 50% / auto 8px no-repeat !important;
+    }
+    
+    // Make sure LinkedIn plugin iframe only shows when hovering over icon or widget (required click to close otherwise)
+    .IN-widget iframe {
+      display: none !important;
+    }
+    .IN-widget:hover iframe {
+      display: block !important;
+    }
+  }
+}
