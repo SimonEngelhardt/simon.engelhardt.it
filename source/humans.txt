@@ -1,8 +1,16 @@
-/* Foundation was made by ZURB, an interaction design and design strategy firm in Campbell, CA */
-/* zurb.com */
-/* humanstxt.org */
+/* TEAM */
+  Owner: Simon Engelhardt
+  Twitter: @simonengelhardt
+  Location: New York, NY, USA
+
+/* THANKS */
+  AngularJS: http://angularjs.org/
+  ZURB Foundation: http://foundation.zurb.com/
+  Middleman: http://middlemanapp.com
+  Middleman Skeleton for ZURB Foundation: https://github.com/axyz/middleman-zurb-foundation
 
 /* SITE */
+  Language: English
   Standards: HTML5, CSS3
-  Components: jQuery, Orbit, Reveal
-  Software: Coda, Textmate, Git
+  Components: AngularJS, ZURB Foundation, Modernizr
+  Software: Sublime Text, Git, Middleman
