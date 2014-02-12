@@ -1,0 +1,46 @@
+---
+title: Simon Engelhardt
+subtitle: Résumé
+---
+
+<div ng-app="resumeApp">
+  <div ng-controller="ProjectsCtrl" ng-cloak>
+		<h2>Selected projects</h2>
+    <dl class="sub-nav"> <!-- TODO: setup click to selectedRole -->
+      <dt>Filter by role:</dt>
+      <dd ng-repeat="role in roles" ng-click="selectRole(role)" ng-class="{active: role === selectedRole}"><a>{{role}}</a></dd>
+    </dl>
+		<ul class="no-bullet">
+			<li ng-repeat="project in projects | filter:roleFilter" class="project">
+        <hr/>
+				<h3>{{project.client}} <small>{{project.title}}</small></h3>
+				<small class="url">
+					<a href="{{project.url}}" target="_blank" title="{{project.urlnote}}">
+						<img ng-if="project.icon" width="16px" height="16px" ng-src="{{project.icon}}">
+						{{project.url}}
+					</a>
+				</small>
+				<p>{{project.description}}</p>
+				<div ng-if="project.extendeddescription" class="extended-description" ng-class="{'collapsed': !project.extendedDescriptionVisible}">
+					<a ng-click="project.extendedDescriptionVisible = !project.extendedDescriptionVisible" class="expand-button">
+						<i ng-class="{'fi-plus': !project.extendedDescriptionVisible, 'fi-minus': project.extendedDescriptionVisible}"></i>
+						Further description
+					</a>
+					<p ng-show="project.extendedDescriptionVisible">{{project.extendeddescription}}</p>
+				</div>
+				<h4>Roles</h4>
+				<p class="tags">
+					<span ng-repeat="role in project.roles" class="label">{{role}}</span>
+				</p>
+				<h4>Years</h4>
+				<p class="years">
+					<span ng-repeat="year in allYears" class="label" ng-class="{secondary: project.years.indexOf(year) ===  -1}">{{year}}</span>
+				</p>
+				<h4>Tech</h4>
+				<p class="tags">
+					<span ng-repeat="tech in project.techs" class="label">{{tech}}</span>
+				</p>
+			</li>
+		</ul>
+  </div>
+</div>

@@ -2,8 +2,6 @@
 @import "foundation.scss";
 
 header {
-  @include grid-row;
-
   margin-top: $column-gutter/2;
 
   h1 {
@@ -50,5 +48,30 @@ header {
     .IN-widget:hover iframe {
       display: block !important;
     }
+  }
+}
+
+.project {
+  .url {
+    display: block;
+  }
+  .extended-description {
+    .expand-button {
+      display: block;
+    }
+    &.collapsed {
+      .expand-button {
+        margin-bottom: $paragraph-margin-bottom;
+      }
+    }
+  }
+  .extended-description.collapsed {
+    
+  }
+  .tags .label {
+    margin-right: 0.5em;
+  }
+  .years {
+    white-space: nowrap;
   }
 }
