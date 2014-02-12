@@ -6,10 +6,12 @@ subtitle: Résumé
 <div ng-app="resumeApp">
   <div ng-controller="ProjectsCtrl" ng-cloak>
 		<h2>Selected projects</h2>
-    <dl class="sub-nav"> <!-- TODO: setup click to selectedRole -->
-      <dt>Filter by role:</dt>
-      <dd ng-repeat="role in roles" ng-click="selectRole(role)" ng-class="{active: role === selectedRole}"><a>{{role}}</a></dd>
-    </dl>
+    <form>
+      <label>
+        Filter by role<br/>
+        <select ng-model="selectedRole" ng-options="role for role in roles" class="large-4 medium-5"></select>
+      </label>
+    </form>
 		<ul class="no-bullet">
 			<li ng-repeat="project in projects | filter:roleFilter" class="project">
         <hr/>

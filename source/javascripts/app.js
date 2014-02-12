@@ -55,10 +55,6 @@ resumeApp.controller('ProjectsCtrl', ['$scope', '$http', '$log', function ($scop
     return $scope.selectedRole === unfilteredRole || angular.isArray(project.roles) && project.roles.indexOf($scope.selectedRole) !== -1;
   };
 
-  $scope.selectRole = function(role) {
-    $scope.selectedRole = role;
-  };
-
   $scope.sortNumbersDesc = function(a, b) {
     return b - a;
   };
