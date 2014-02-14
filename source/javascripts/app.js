@@ -8,7 +8,7 @@ IN.Event.on(IN, 'systemReady', function() {
 
 var resumeApp = angular.module('resumeApp', []);
 
-resumeApp.controller('ProjectsCtrl', ['$scope', '$http', '$log', function ($scope, $http, $log) {
+resumeApp.controller('ProjectsCtrl', ['$scope', 'sheets', '$log', function ($scope, sheets, $log) {
   $scope.roles = [];
   var unfilteredRole = 'All';
   $scope.selectedRole = unfilteredRole;
@@ -18,29 +18,8 @@ resumeApp.controller('ProjectsCtrl', ['$scope', '$http', '$log', function ($scop
     $scope.allYears.push(i.toString());
   }
 
-  var keyPrefix = 'gsx$', valuePropertyName = '$t'; // Should be constants somewhere
-  $http.get('https://spreadsheets.google.com/feeds/list/0ApJXKMOVLglTdE04c2Y0N192VWJQSlVzTWpicDBqbEE/1/public/values?alt=json').success(function(data) {
-    $scope.projects = data.feed.entry.map(function(entry) {
-      // Simple mapping of all properties from Google spreadsheet columns (in format such as entry.gsx$columnname.$t)
-      var project = {
-        extendedDescriptionVisible: false
-      };
-      
-      for (key in entry) {
-        if (key.indexOf(keyPrefix) === 0) {
-          var value = entry[key][valuePropertyName];
-
-          if (value.indexOf('\n') !== -1)
-            value = value.split('\n');
-          else
-            value = value.toString();
-
-          project[key.substring(keyPrefix.length)] = value;
-        }
-      }
-      return project;
-    });
-
+  sheets.getProjects().then(function(projects){
+    $scope.projects = projects;
     angular.forEach($scope.projects, function(project){
       angular.forEach(project.roles, function(role){
         if ($scope.roles.indexOf(role) === -1)
@@ -60,5 +39,38 @@ resumeApp.controller('ProjectsCtrl', ['$scope', '$http', '$log', function ($scop
   };
 }]);
 
-resumeApp.controller('SkillsCtrl', ['$scope', '$http', '$log', function($scope, $http, $log) {
+resumeApp.factory('sheets', ['$http', '$log', function($http, $log){
+  var sheetUrls = {
+        projects: 'https://spreadsheets.google.com/feeds/list/0ApJXKMOVLglTdE04c2Y0N192VWJQSlVzTWpicDBqbEE/1/public/values?alt=json'
+      },
+      keyPrefix = 'gsx$',
+      valuePropertyName = '$t';
+
+  return {
+    getProjects: function() {
+      return $http.get(sheetUrls.projects).then(function(response) {
+        var projects = response.data.feed.entry.map(function(entry) {
+          // Simple mapping of all properties from Google spreadsheet columns (in format such as entry.gsx$columnname.$t)
+          var project = {
+            extendedDescriptionVisible: false
+          };
+          
+          for (key in entry) {
+            if (key.indexOf(keyPrefix) === 0) {
+              var value = entry[key][valuePropertyName];
+
+              if (value.indexOf('\n') !== -1)
+                value = value.split('\n');
+              else
+                value = value.toString();
+
+              project[key.substring(keyPrefix.length)] = value;
+            }
+          }
+          return project;
+        });
+        return projects;
+      });
+    }
+  };
 }]);
