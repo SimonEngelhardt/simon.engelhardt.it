@@ -3,8 +3,41 @@ title: Simon Engelhardt
 subtitle: Résumé
 ---
 
-<div ng-app="resumeApp">
-  <div ng-controller="ProjectsCtrl" ng-cloak>
+<div ng-app="resumeApp" ng-cloak>
+  <div ng-controller="ExperienceCtrl">
+    <h2>Experience</h2>
+    <ul class="no-bullet">
+      <li ng-repeat="experience in experiences" class="experience">
+        <hr/>
+        <h3>{{experience.title}} <small>{{experience.company}}</small></h3>
+        <p class="details">
+          {{experience.start.toDate() | date:'MMMM yyyy'}} – {{experience.current ? 'Present' : experience.end.toDate() | date:'MMMM yyyy'}}
+          (<ng-pluralize
+            count="experience.duration.years()"
+            when="{'0': '',
+                   'one': '1 year',
+                   'other': '{} years'}">
+          </ng-pluralize><ng-pluralize
+            count="experience.duration.years() + experience.duration.months()"
+            when="{'0': '',
+                   'one': '',
+                   'other': ' '}">
+          </ng-pluralize><ng-pluralize
+            count="experience.duration.months()"
+            when="{'0': '',
+                   'one': '1 month',
+                   'other': '{} months'}">
+          </ng-pluralize>)
+          <br/>
+          {{experience.location}}
+        </p>
+        <p>
+          {{experience.description}}
+        </p>
+      </li>
+    </ul>
+  </div>
+  <div ng-controller="ProjectsCtrl">
 		<h2>Selected projects</h2>
     <form>
       <label>

@@ -51,6 +51,12 @@ header {
   }
 }
 
+.experience {
+  .details {
+    color: scale-color($body-font-color, $lightness: 35%);
+  }
+}
+
 .project {
   .url {
     display: block;
