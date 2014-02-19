@@ -8,6 +8,19 @@ IN.Event.on(IN, 'systemReady', function() {
 
 var resumeApp = angular.module('resumeApp', []);
 
+resumeApp.controller('EducationCtrl', ['$scope', 'sheets', '$log', function ($scope, sheets, $log) {
+  sheets.getEducations().then(function(educations) {
+    var dateFormat = 'MM/DD/YYYY'; // Date format from Google Sheets API
+    
+    angular.forEach(educations, function(education) {
+      if (education.start) education.start = moment(education.start, dateFormat);
+      if (education.end) education.end = moment(education.end, dateFormat);
+    });
+
+    $scope.educations = educations;
+  });
+}]);
+
 resumeApp.controller('ExperienceCtrl', ['$scope', 'sheets', '$log', function ($scope, sheets, $log) {
   sheets.getExperiences().then(function(experiences) {
     var dateFormat = 'MM/DD/YYYY'; // Date format from Google Sheets API
@@ -61,7 +74,8 @@ resumeApp.controller('ProjectsCtrl', ['$scope', 'sheets', '$log', function ($sco
 resumeApp.factory('sheets', ['$http', '$log', function($http, $log){
   var sheetUrls = {
         projects:   'https://spreadsheets.google.com/feeds/list/0ApJXKMOVLglTdE04c2Y0N192VWJQSlVzTWpicDBqbEE/1/public/values?alt=json',
-        experience: 'https://spreadsheets.google.com/feeds/list/0ApJXKMOVLglTdE04c2Y0N192VWJQSlVzTWpicDBqbEE/3/public/values?alt=json'
+        experience: 'https://spreadsheets.google.com/feeds/list/0ApJXKMOVLglTdE04c2Y0N192VWJQSlVzTWpicDBqbEE/3/public/values?alt=json',
+        education:  'https://spreadsheets.google.com/feeds/list/0ApJXKMOVLglTdE04c2Y0N192VWJQSlVzTWpicDBqbEE/4/public/values?alt=json'
       },
       keyPrefix = 'gsx$',
       valuePropertyName = '$t';
@@ -92,6 +106,11 @@ resumeApp.factory('sheets', ['$http', '$log', function($http, $log){
   return {
     getProjects: function() {
       return $http.get(sheetUrls.projects).then(function(response) {
+        return mapSheet(response.data);
+      });
+    },
+    getEducations: function() {
+      return $http.get(sheetUrls.education).then(function(response) {
         return mapSheet(response.data);
       });
     },

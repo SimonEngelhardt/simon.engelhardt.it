@@ -51,10 +51,8 @@ header {
   }
 }
 
-.experience {
-  .details {
-    color: scale-color($body-font-color, $lightness: 35%);
-  }
+.education .details, .experience .details {
+  color: scale-color($body-font-color, $lightness: 35%);
 }
 
 .project {
