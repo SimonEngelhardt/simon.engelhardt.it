@@ -4,7 +4,7 @@ subtitle: Résumé
 ---
 
 <div ng-app="resumeApp" ng-cloak>
-  <div ng-controller="EducationCtrl">
+  <div ng-controller="EducationCtrl" class="section">
     <h2>Education</h2>
     <ul class="no-bullet">
       <li ng-repeat="education in educations" class="education">
@@ -28,40 +28,23 @@ subtitle: Résumé
       </li>
     </ul>
   </div>
-  <div ng-controller="ExperienceCtrl">
+  <div ng-controller="ExperienceCtrl" class="section experiences">
     <h2>Experience</h2>
-    <ul class="no-bullet">
-      <li ng-repeat="experience in experiences" class="experience">
-        <hr/>
-        <h3>{{experience.title}} <small>{{experience.company}}</small></h3>
-        <p class="details">
-          {{experience.start.toDate() | date:'MMMM yyyy'}} – {{experience.current ? 'Present' : experience.end.toDate() | date:'MMMM yyyy'}}
-          (<ng-pluralize
-            count="experience.duration.years()"
-            when="{'0': '',
-                   'one': '1 year',
-                   'other': '{} years'}">
-          </ng-pluralize><ng-pluralize
-            count="experience.duration.years() + experience.duration.months()"
-            when="{'0': '',
-                   'one': '',
-                   'other': ' '}">
-          </ng-pluralize><ng-pluralize
-            count="experience.duration.months()"
-            when="{'0': '',
-                   'one': '1 month',
-                   'other': '{} months'}">
-          </ng-pluralize>)
-          <br/>
-          {{experience.location}}
-        </p>
-        <p>
-          {{experience.description}}
-        </p>
+    <ul class="no-bullet" ng-model="primaryExperiences">
+      <li ng-repeat="experience in primaryExperiences" class="experience" ng-include="'/resume/partials/experience.html'">
+      </li>
+    </ul>
+    <hr/>
+    <a ng-click="secondaryExperiencesVisible = !secondaryExperiencesVisible" class="expand-button">
+      <i ng-class="{'fi-plus': !secondaryExperiencesVisible, 'fi-minus': secondaryExperiencesVisible}"></i>
+      Secondary (earlier and part-time) work experience
+    </a>
+    <ul ng-show="secondaryExperiencesVisible" class="no-bullet" ng-model="secondaryExperiences">
+      <li ng-repeat="experience in secondaryExperiences" class="experience" ng-include="'/resume/partials/experience.html'">
       </li>
     </ul>
   </div>
-  <div ng-controller="ProjectsCtrl">
+  <div ng-controller="ProjectsCtrl" class="section">
 		<h2>Selected projects</h2>
     <form>
       <label>

@@ -51,8 +51,20 @@ header {
   }
 }
 
+.section {
+  margin-bottom: 2 * $paragraph-margin-bottom;
+}
+
 .education .details, .experience .details {
   color: scale-color($body-font-color, $lightness: 35%);
+}
+
+.expand-button {
+  display: block;
+}
+
+.experiences > .expand-button {
+  margin-top: 1.5 * $paragraph-margin-bottom;
 }
 
 .project {
@@ -60,17 +72,11 @@ header {
     display: block;
   }
   .extended-description {
-    .expand-button {
-      display: block;
-    }
     &.collapsed {
       .expand-button {
         margin-bottom: $paragraph-margin-bottom;
       }
     }
-  }
-  .extended-description.collapsed {
-    
   }
   .tags .label {
     margin-right: 0.5em;

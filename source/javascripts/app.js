@@ -22,8 +22,13 @@ resumeApp.controller('EducationCtrl', ['$scope', 'sheets', '$log', function ($sc
 }]);
 
 resumeApp.controller('ExperienceCtrl', ['$scope', 'sheets', '$log', function ($scope, sheets, $log) {
+  $scope.secondaryExperiencesVisible = false;
+
   sheets.getExperiences().then(function(experiences) {
-    var dateFormat = 'MM/DD/YYYY'; // Date format from Google Sheets API
+    var primaryExperiences = [],
+        secondaryExperiences = [],
+        dateFormat = 'MM/DD/YYYY'; // Date format from Google Sheets API
+
     angular.forEach(experiences, function(experience) {
       if (experience.start) experience.start = moment(experience.start, dateFormat);
       if (experience.end) {
@@ -34,8 +39,18 @@ resumeApp.controller('ExperienceCtrl', ['$scope', 'sheets', '$log', function ($s
         experience.current = true;
       }
       if (experience.start && experience.end) experience.duration = moment.duration(experience.end - experience.start);
+      if (experience.secondary) {
+        experience.dateFormat = 'yyyy';
+        secondaryExperiences.push(experience);
+      }
+      else {
+        experience.dateFormat = 'MMMM yyyy';
+        primaryExperiences.push(experience);
+      }
     });
-    $scope.experiences = experiences;
+
+    $scope.primaryExperiences = primaryExperiences;
+    $scope.secondaryExperiences = secondaryExperiences;
   });
 }]);
 
