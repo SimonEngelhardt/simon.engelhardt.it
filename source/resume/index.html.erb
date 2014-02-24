@@ -3,8 +3,16 @@ title: Simon Engelhardt
 subtitle: Résumé
 ---
 
+<div data-magellan-expedition="fixed" data-options="destination_threshold:80;" style="position: fixed;">
+  <dl class="sub-nav">
+    <dt>Go to:</dt>
+    <dd data-magellan-arrival="education"><a href="#education">Education</a></dd>
+    <dd data-magellan-arrival="experience"><a href="#experience">Experience</a></dd>
+    <dd data-magellan-arrival="projects"><a href="#projects">Selected Projects</a></dd>
+  </dl>
+</div>
 <div ng-app="resumeApp" ng-cloak>
-  <div ng-controller="EducationCtrl" class="section">
+  <div id="education" ng-controller="EducationCtrl" class="section" data-magellan-destination="education">
     <h2>Education</h2>
     <ul class="no-bullet">
       <li ng-repeat="education in educations" class="education">
@@ -28,7 +36,7 @@ subtitle: Résumé
       </li>
     </ul>
   </div>
-  <div ng-controller="ExperienceCtrl" class="section experiences">
+  <div id="experience" ng-controller="ExperienceCtrl" class="section experiences" data-magellan-destination="experience">
     <h2>Experience</h2>
     <ul class="no-bullet" ng-model="primaryExperiences">
       <li ng-repeat="experience in primaryExperiences" class="experience" ng-include="'/resume/partials/experience.html'">
@@ -44,8 +52,8 @@ subtitle: Résumé
       </li>
     </ul>
   </div>
-  <div ng-controller="ProjectsCtrl" class="section">
-		<h2>Selected projects</h2>
+  <div id="projects" ng-controller="ProjectsCtrl" class="section" data-magellan-destination="projects">
+    <h2>Selected projects</h2>
     <form>
       <label>
         Filter by role<br/>

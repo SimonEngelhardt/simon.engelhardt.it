@@ -6,7 +6,10 @@ IN.Event.on(IN, 'systemReady', function() {
   .addClass('fi-social-linkedin');
 });
 
-var resumeApp = angular.module('resumeApp', []);
+var resumeApp = angular.module('resumeApp', [])
+  .config(function($locationProvider) {
+    $locationProvider.html5Mode(true);
+  });
 
 resumeApp.controller('EducationCtrl', ['$scope', 'sheets', '$log', function ($scope, sheets, $log) {
   sheets.getEducations().then(function(educations) {
