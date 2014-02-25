@@ -1,4 +1,4 @@
-//= require jquery/jquery
+//= require jquery/jquery.min
 //= require foundation/js/foundation.min
 //= require momentjs/min/moment.min
 
