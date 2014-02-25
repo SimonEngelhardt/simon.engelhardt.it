@@ -6,12 +6,28 @@ subtitle: Résumé
 <div data-magellan-expedition="fixed" data-options="destination_threshold:80;" style="position: fixed;">
   <dl class="sub-nav">
     <dt>Go to:</dt>
-    <dd data-magellan-arrival="education"><a href="#education">Education</a></dd>
     <dd data-magellan-arrival="experience"><a href="#experience">Experience</a></dd>
+    <dd data-magellan-arrival="education"><a href="#education">Education</a></dd>
     <dd data-magellan-arrival="projects"><a href="#projects">Selected Projects</a></dd>
   </dl>
 </div>
 <div ng-app="resumeApp" ng-cloak>
+  <div id="experience" ng-controller="ExperienceCtrl" class="section experiences" data-magellan-destination="experience">
+    <h2>Experience</h2>
+    <ul class="no-bullet" ng-model="primaryExperiences">
+      <li ng-repeat="experience in primaryExperiences" class="experience" ng-include="'/resume/partials/experience.html'">
+      </li>
+    </ul>
+    <hr/>
+    <a ng-click="secondaryExperiencesVisible = !secondaryExperiencesVisible" class="expand-button">
+      <i ng-class="{'fi-plus': !secondaryExperiencesVisible, 'fi-minus': secondaryExperiencesVisible}"></i>
+      Secondary (earlier and part-time) work experience
+    </a>
+    <ul ng-show="secondaryExperiencesVisible" class="no-bullet" ng-model="secondaryExperiences">
+      <li ng-repeat="experience in secondaryExperiences" class="experience" ng-include="'/resume/partials/experience.html'">
+      </li>
+    </ul>
+  </div>
   <div id="education" ng-controller="EducationCtrl" class="section" data-magellan-destination="education">
     <h2>Education</h2>
     <ul class="no-bullet">
@@ -33,22 +49,6 @@ subtitle: Résumé
           <dt>Thesis</dt>
           <dd>{{education.thesis}}</dd>
         </dl>
-      </li>
-    </ul>
-  </div>
-  <div id="experience" ng-controller="ExperienceCtrl" class="section experiences" data-magellan-destination="experience">
-    <h2>Experience</h2>
-    <ul class="no-bullet" ng-model="primaryExperiences">
-      <li ng-repeat="experience in primaryExperiences" class="experience" ng-include="'/resume/partials/experience.html'">
-      </li>
-    </ul>
-    <hr/>
-    <a ng-click="secondaryExperiencesVisible = !secondaryExperiencesVisible" class="expand-button">
-      <i ng-class="{'fi-plus': !secondaryExperiencesVisible, 'fi-minus': secondaryExperiencesVisible}"></i>
-      Secondary (earlier and part-time) work experience
-    </a>
-    <ul ng-show="secondaryExperiencesVisible" class="no-bullet" ng-model="secondaryExperiences">
-      <li ng-repeat="experience in secondaryExperiences" class="experience" ng-include="'/resume/partials/experience.html'">
       </li>
     </ul>
   </div>

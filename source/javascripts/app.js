@@ -11,19 +11,6 @@ var resumeApp = angular.module('resumeApp', [])
     $locationProvider.html5Mode(true);
   });
 
-resumeApp.controller('EducationCtrl', ['$scope', 'sheets', '$log', function ($scope, sheets, $log) {
-  sheets.getEducations().then(function(educations) {
-    var dateFormat = 'MM/DD/YYYY'; // Date format from Google Sheets API
-    
-    angular.forEach(educations, function(education) {
-      if (education.start) education.start = moment(education.start, dateFormat);
-      if (education.end) education.end = moment(education.end, dateFormat);
-    });
-
-    $scope.educations = educations;
-  });
-}]);
-
 resumeApp.controller('ExperienceCtrl', ['$scope', 'sheets', '$log', function ($scope, sheets, $log) {
   $scope.secondaryExperiencesVisible = false;
 
@@ -54,6 +41,19 @@ resumeApp.controller('ExperienceCtrl', ['$scope', 'sheets', '$log', function ($s
 
     $scope.primaryExperiences = primaryExperiences;
     $scope.secondaryExperiences = secondaryExperiences;
+  });
+}]);
+
+resumeApp.controller('EducationCtrl', ['$scope', 'sheets', '$log', function ($scope, sheets, $log) {
+  sheets.getEducations().then(function(educations) {
+    var dateFormat = 'MM/DD/YYYY'; // Date format from Google Sheets API
+    
+    angular.forEach(educations, function(education) {
+      if (education.start) education.start = moment(education.start, dateFormat);
+      if (education.end) education.end = moment(education.end, dateFormat);
+    });
+
+    $scope.educations = educations;
   });
 }]);
 
