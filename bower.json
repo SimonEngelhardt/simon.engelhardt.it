@@ -4,6 +4,7 @@
   "private": "true",
   "dependencies": {
     "foundation": "zurb/bower-foundation",
-    "momentjs": "~2.5.1"
+    "momentjs": "~2.5.1",
+    "angular": "~1.2.14"
   }
 }
