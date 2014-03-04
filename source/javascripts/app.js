@@ -139,3 +139,28 @@ resumeApp.factory('sheets', ['$http', '$log', function($http, $log){
     }
   };
 }]);
+
+// Scroll progress meter directive - requires jQuery
+resumeApp.directive('scrollProgressMeter', ['$window', function($window) {
+  return function(scope, element, attr) {
+    var meter = angular.element(attr.scrollProgressMeter);
+
+    angular.element($window).on('scroll', function(ev) {
+      // TODO: Should probably have some throttling
+
+      // TODO: Top and bottom only really needs to be recalculated when databinding the DOM
+      // TODO: Update when toggling secondary experiences
+      var top = element.offset().top;
+      var bottom = top + element.height();
+
+      // TODO: Account for expedition height if fixed (as in magellan)
+      var scrollTop = angular.element($window).scrollTop();
+
+      var progress = ((bottom - scrollTop)/(bottom - top)) * 100;
+      if (progress > 100) progress = 100;
+      else if (progress < 0) progress = 0;
+
+      meter.css('width', progress + '%');
+    });
+  }
+}]);

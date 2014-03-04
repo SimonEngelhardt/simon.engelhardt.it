@@ -5,14 +5,34 @@ subtitle: Résumé
 
 <div data-magellan-expedition="fixed" data-options="destination_threshold:80;">
   <dl class="sub-nav">
-    <dt>Go to:</dt>
-    <dd data-magellan-arrival="experience"><a href="#experience">Experience</a></dd>
-    <dd data-magellan-arrival="education"><a href="#education">Education</a></dd>
-    <dd data-magellan-arrival="projects"><a href="#projects">Selected Projects</a></dd>
+    <dd data-magellan-arrival="experience">
+      <a href="#experience">
+        Experience
+      </a>
+      <div class="progress" dir="rtl">
+        <span class="meter"></span>
+      </div>
+    </dd>
+    <dd data-magellan-arrival="education">
+      <a href="#education">
+        Education
+      </a>
+      <div id="education-progress" class="progress" dir="rtl">
+        <span class="meter"></span>
+      </div>
+    </dd>
+    <dd data-magellan-arrival="projects">
+      <a href="#projects">
+        Selected projects
+      </a>
+      <div id="projects-progress" class="progress" dir="rtl">
+        <span class="meter"></span>
+      </div>
+    </dd>
   </dl>
 </div>
 <div ng-app="resumeApp" ng-cloak>
-  <div id="experience" ng-controller="ExperienceCtrl" class="section experiences" data-magellan-destination="experience">
+  <div id="experience" ng-controller="ExperienceCtrl" class="section experiences" data-magellan-destination="experience" scroll-progress-meter='[data-magellan-arrival="experience"] .progress .meter'>
     <h2>Experience</h2>
     <ul class="no-bullet" ng-model="primaryExperiences">
       <li ng-repeat="experience in primaryExperiences" class="experience" ng-include="'/resume/partials/experience.html'">
@@ -28,7 +48,7 @@ subtitle: Résumé
       </li>
     </ul>
   </div>
-  <div id="education" ng-controller="EducationCtrl" class="section" data-magellan-destination="education">
+  <div id="education" ng-controller="EducationCtrl" class="section" data-magellan-destination="education" scroll-progress-meter='[data-magellan-arrival="education"] .progress .meter'>
     <h2>Education</h2>
     <ul class="no-bullet">
       <li ng-repeat="education in educations" class="education">
@@ -52,7 +72,7 @@ subtitle: Résumé
       </li>
     </ul>
   </div>
-  <div id="projects" ng-controller="ProjectsCtrl" class="section" data-magellan-destination="projects">
+  <div id="projects" ng-controller="ProjectsCtrl" class="section" data-magellan-destination="projects" scroll-progress-meter='[data-magellan-arrival="projects"] .progress .meter'>
     <h2>Selected projects</h2>
     <form>
       <label>

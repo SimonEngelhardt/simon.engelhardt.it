@@ -54,13 +54,17 @@ header {
 .sub-nav {
   margin-left: 0;
 
+  > :first-child {
+    margin-left: 0;
+  }
+
   dt {
     line-height: 1.8em;
     margin-bottom: 0;
   }
 
-  > :first-child {
-    margin-left: 0;
+  dd.active a {
+    @include radius(0);
   }
 }
 
