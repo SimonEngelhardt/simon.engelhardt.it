@@ -89,7 +89,7 @@ resumeApp.controller('ProjectsCtrl', ['$scope', 'sheets', '$log', function ($sco
   };
 }]);
 
-resumeApp.factory('sheets', ['$http', '$log', function($http, $log){
+resumeApp.factory('sheets', ['$http', function($http){
   var sheetUrls = {
         projects:   'https://spreadsheets.google.com/feeds/list/0ApJXKMOVLglTdE04c2Y0N192VWJQSlVzTWpicDBqbEE/1/public/values?alt=json',
         experience: 'https://spreadsheets.google.com/feeds/list/0ApJXKMOVLglTdE04c2Y0N192VWJQSlVzTWpicDBqbEE/3/public/values?alt=json',
