@@ -141,26 +141,30 @@ resumeApp.factory('sheets', ['$http', '$log', function($http, $log){
 }]);
 
 // Scroll progress meter directive - requires jQuery
-resumeApp.directive('scrollProgressMeter', ['$window', function($window) {
+resumeApp.directive('scrollProgressMeter', ['$window', '$timeout', function($window, $timeout) {
   return function(scope, element, attr) {
     var meter = angular.element(attr.scrollProgressMeter);
 
-    angular.element($window).on('scroll', function(ev) {
-      // TODO: Should probably have some throttling
+    var throttledScrollHandler = function() {
+      var timeoutPromise = $timeout(function() {
+        $timeout.cancel(timeoutPromise);
 
-      // TODO: Top and bottom only really needs to be recalculated when databinding the DOM
-      // TODO: Update when toggling secondary experiences
-      var top = element.offset().top;
-      var bottom = top + element.height();
+        // TODO: Top and bottom only really needs to be recalculated when databinding the DOM or resizing the window
+        // TODO: Update when toggling secondary experiences
+        var top = element.offset().top;
+        var bottom = top + element.outerHeight();
 
-      // TODO: Account for expedition height if fixed (as in magellan)
-      var scrollTop = angular.element($window).scrollTop();
+        // TODO: Account for expedition height if fixed (as in magellan)
+        var scrollTop = angular.element($window).scrollTop();
 
-      var progress = ((bottom - scrollTop)/(bottom - top)) * 100;
-      if (progress > 100) progress = 100;
-      else if (progress < 0) progress = 0;
+        var progress = ((bottom - scrollTop)/(bottom - top)) * 100;
+        if (progress > 100) progress = 100;
+        else if (progress < 0) progress = 0;
 
-      meter.css('width', progress + '%');
-    });
+        meter.css('width', progress + '%');
+      }, 30); // throttle to approx 30 FPS
+    }
+
+    angular.element($window).on('scroll', throttledScrollHandler);
   }
 }]);
