@@ -47,7 +47,7 @@ resumeApp.controller('ExperienceCtrl', ['$scope', 'sheets', '$log', function ($s
 resumeApp.controller('EducationCtrl', ['$scope', 'sheets', '$log', function ($scope, sheets, $log) {
   sheets.getEducations().then(function(educations) {
     var dateFormat = 'MM/DD/YYYY'; // Date format from Google Sheets API
-    
+
     angular.forEach(educations, function(education) {
       if (education.start) education.start = moment(education.start, dateFormat);
       if (education.end) education.end = moment(education.end, dateFormat);
@@ -102,7 +102,7 @@ resumeApp.factory('sheets', ['$http', '$log', function($http, $log){
   function mapSheet(data) {
     var objects = data.feed.entry.map(function(entry) {
       var object = {};
-      
+
       for (key in entry) {
         if (key.indexOf(keyPrefix) === 0) {
           var value = entry[key][valuePropertyName];
@@ -154,8 +154,12 @@ resumeApp.directive('scrollProgressMeter', ['$window', '$timeout', function($win
         var top = element.offset().top;
         var bottom = top + element.outerHeight();
 
-        // TODO: Account for expedition height if fixed (as in magellan)
+        // Account for height of meter element's offset parent if it is currently in a fixed position (used when meter is in a fixed navigation bar, for example)
         var scrollTop = angular.element($window).scrollTop();
+        var meterOffsetParent = meter.offsetParent();
+        if (meterOffsetParent.css('position') === 'fixed') {
+          scrollTop = scrollTop + meterOffsetParent.outerHeight();
+        }
 
         var progress = ((bottom - scrollTop)/(bottom - top)) * 100;
         if (progress > 100) progress = 100;
