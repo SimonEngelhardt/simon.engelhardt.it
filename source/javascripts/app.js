@@ -62,8 +62,8 @@ resumeApp.controller('ProjectsCtrl', ['$scope', 'sheets', '$log', function ($sco
   var unfilteredRole = 'All';
   $scope.selectedRole = unfilteredRole;
   $scope.allYears = [];
-  
-  for(var i = 2006; i < 2014; i++) { // Could be calculated dynamically from projects
+
+  for(var i = 2006; i <= 2014; i++) { // Could be calculated dynamically from projects
     $scope.allYears.push(i.toString());
   }
 
