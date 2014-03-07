@@ -167,7 +167,7 @@ resumeApp.directive('scrollProgressMeter', ['$window', '$timeout', function($win
       }, 30); // throttle to approx 30 FPS
     }
 
-    angular.element($window).on('scroll', throttledScrollHandler);
+    angular.element($window).on('scroll resize', throttledScrollHandler);
   }
 }]);
 
