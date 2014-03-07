@@ -39,7 +39,7 @@ subtitle: Résumé
       </li>
     </ul>
     <hr/>
-    <a ng-click="secondaryExperiencesVisible = !secondaryExperiencesVisible" class="expand-button">
+    <a ng-click="secondaryExperiencesVisible = !secondaryExperiencesVisible" trigger-scroll-onclick class="expand-button">
       <i ng-class="{'fi-plus': !secondaryExperiencesVisible, 'fi-minus': secondaryExperiencesVisible}"></i>
       Secondary (earlier and part-time) work experience
     </a>
@@ -92,7 +92,7 @@ subtitle: Résumé
 				</small>
 				<p>{{project.description}}</p>
 				<div ng-if="project.extendeddescription" class="extended-description" ng-class="{'collapsed': !project.extendedDescriptionVisible}">
-					<a ng-click="project.extendedDescriptionVisible = !project.extendedDescriptionVisible" class="expand-button">
+					<a ng-click="project.extendedDescriptionVisible = !project.extendedDescriptionVisible" trigger-scroll-onclick class="expand-button">
 						<i ng-class="{'fi-plus': !project.extendedDescriptionVisible, 'fi-minus': project.extendedDescriptionVisible}"></i>
 						Further description
 					</a>

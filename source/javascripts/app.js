@@ -149,8 +149,6 @@ resumeApp.directive('scrollProgressMeter', ['$window', '$timeout', function($win
       var timeoutPromise = $timeout(function() {
         $timeout.cancel(timeoutPromise);
 
-        // TODO: Top and bottom only really needs to be recalculated when databinding the DOM or resizing the window
-        // TODO: Update when toggling secondary experiences
         var top = element.offset().top;
         var bottom = top + element.outerHeight();
 
@@ -171,4 +169,19 @@ resumeApp.directive('scrollProgressMeter', ['$window', '$timeout', function($win
 
     angular.element($window).on('scroll', throttledScrollHandler);
   }
+}]);
+
+// This directive will trigger a scroll event on the window when the element is clicked
+resumeApp.directive('triggerScrollOnclick', ['$timeout', '$window', function($timeout, $window) {
+  return function(scope, element, attr) {
+    element.on('click', function() {
+
+      // defer until digest cycle is complete
+      $timeout(function() {
+
+        // trigger scroll event on the window
+        $window.dispatchEvent(new Event('scroll'));
+      });
+    });
+  };
 }]);
