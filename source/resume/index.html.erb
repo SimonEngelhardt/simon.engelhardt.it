@@ -113,4 +113,11 @@ subtitle: Résumé
 			</li>
 		</ul>
   </div>
+  <div id="additional-info" ng-controller="InfoCtrl">
+    <h2>Additional Info</h2>
+    <dl>
+      <dt>Birthday</dt>
+      <dd>{{birthdate.toDate() | date}} ({{age}} years)</dd>
+    </dl>
+  </div>
 </div>

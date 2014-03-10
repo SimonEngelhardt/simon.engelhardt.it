@@ -9,7 +9,8 @@ IN.Event.on(IN, 'systemReady', function() {
 var resumeApp = angular.module('resumeApp', [])
   .config(function($locationProvider) {
     $locationProvider.html5Mode(true);
-  });
+  })
+  .constant('birthdate', moment(new Date(1980, 6, 24)));
 
 resumeApp.controller('ExperienceCtrl', ['$scope', 'sheets', '$log', function ($scope, sheets, $log) {
   $scope.secondaryExperiencesVisible = false;
@@ -87,6 +88,11 @@ resumeApp.controller('ProjectsCtrl', ['$scope', 'sheets', '$log', function ($sco
   $scope.sortNumbersDesc = function(a, b) {
     return b - a;
   };
+}]);
+
+resumeApp.controller('InfoCtrl', ['$scope', 'birthdate', function($scope, birthdate) {
+  $scope.birthdate = birthdate;
+  $scope.age = moment().diff(birthdate, 'years');
 }]);
 
 resumeApp.factory('sheets', ['$http', '$timeout', '$anchorScroll', function($http, $timeout, $anchorScroll){
