@@ -108,7 +108,7 @@ resumeApp.factory('sheets', ['$http', '$timeout', '$anchorScroll', function($htt
           var value = entry[key][valuePropertyName];
 
           if (value.indexOf('\n') !== -1)
-            value = value.split('\n');
+            value = value.split('\n').filter(function(s) { return s.length > 0; });
           else
             value = value.toString();
 
