@@ -89,7 +89,7 @@ resumeApp.controller('ProjectsCtrl', ['$scope', 'sheets', '$log', function ($sco
   };
 }]);
 
-resumeApp.factory('sheets', ['$http', function($http){
+resumeApp.factory('sheets', ['$http', '$timeout', '$anchorScroll', function($http, $timeout, $anchorScroll){
   var sheetUrls = {
         projects:   'https://spreadsheets.google.com/feeds/list/0ApJXKMOVLglTdE04c2Y0N192VWJQSlVzTWpicDBqbEE/1/public/values?alt=json',
         experience: 'https://spreadsheets.google.com/feeds/list/0ApJXKMOVLglTdE04c2Y0N192VWJQSlVzTWpicDBqbEE/3/public/values?alt=json',
@@ -121,21 +121,29 @@ resumeApp.factory('sheets', ['$http', function($http){
     return objects;
   }
 
+  function getSheet(url) {
+    return $http.get(url)
+      .then(function(response) {
+        return mapSheet(response.data);
+      })
+      .finally(function() {
+
+        // Queue a scroll to anchor after the digest cycle
+        $timeout(function() {
+          $anchorScroll();
+        })
+      });
+  }
+
   return {
     getProjects: function() {
-      return $http.get(sheetUrls.projects).then(function(response) {
-        return mapSheet(response.data);
-      });
+      return getSheet(sheetUrls.projects);
     },
     getEducations: function() {
-      return $http.get(sheetUrls.education).then(function(response) {
-        return mapSheet(response.data);
-      });
+      return getSheet(sheetUrls.education);
     },
     getExperiences: function() {
-      return $http.get(sheetUrls.experience).then(function(response) {
-        return mapSheet(response.data);
-      });
+      return getSheet(sheetUrls.experience);
     }
   };
 }]);
