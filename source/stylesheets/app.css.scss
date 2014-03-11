@@ -28,7 +28,7 @@ header {
     @media #{$medium-up} {
       font-size: $h3-font-size;
     }
-    
+
     // Override LinkedIn plugin icon style (see also JS)
     .li-connect-widget .li-connect-mark {
       background: none !important;
@@ -40,7 +40,7 @@ header {
     .li-connect-widget.pending .li-connect-mark {
       background: image-url("loader.gif") 0 50% / auto 8px no-repeat !important;
     }
-    
+
     // Make sure LinkedIn plugin iframe only shows when hovering over icon or widget (required click to close otherwise)
     .IN-widget iframe {
       display: none !important;
@@ -72,8 +72,13 @@ header {
   margin-bottom: 2 * $paragraph-margin-bottom;
 }
 
-.education .details, .experience .details {
-  color: scale-color($body-font-color, $lightness: 35%);
+.education, .experience {
+  h3 {
+    line-height: 1.1;
+  }
+  .details {
+    color: scale-color($body-font-color, $lightness: 35%);
+  }
 }
 
 .expand-button {
