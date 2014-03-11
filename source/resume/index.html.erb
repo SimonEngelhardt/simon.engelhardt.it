@@ -58,17 +58,17 @@ subtitle: Résumé
           <small><a href="{{education.url}}" target="_blank">{{education.school}}</a></small>
         </h3>
         <p class="details">
-          {{education.start.toDate() | date:'yyyy'}} – {{education.end.toDate() | date:'yyyy'}}
-          <br/>
-          {{education.location}}
+          {{education.start.toDate() | date:'yyyy'}} – {{education.end.toDate() | date:'yyyy'}}, {{education.location}}
         </p>
         <p>
           {{education.description}}
         </p>
-        <dl ng-if="education.thesis">
-          <dt>Thesis</dt>
-          <dd>{{education.thesis}}</dd>
-        </dl>
+        <div ng-if="education.thesis">
+          <strong>Thesis: <em>{{education.thesis}}</em></strong>
+          <p>
+            {{education.thesisdescription}}
+          </p>
+        </div>
       </li>
     </ul>
   </div>
