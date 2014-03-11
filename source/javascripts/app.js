@@ -95,7 +95,7 @@ resumeApp.controller('InfoCtrl', ['$scope', 'birthdate', function($scope, birthd
   $scope.age = moment().diff(birthdate, 'years');
 }]);
 
-resumeApp.factory('sheets', ['$http', '$timeout', '$anchorScroll', function($http, $timeout, $anchorScroll){
+resumeApp.factory('sheets', ['$http', '$location', '$timeout', '$anchorScroll', function($http, $location, $timeout, $anchorScroll){
   var sheetUrls = {
         projects:   'https://spreadsheets.google.com/feeds/list/0ApJXKMOVLglTdE04c2Y0N192VWJQSlVzTWpicDBqbEE/1/public/values?alt=json',
         experience: 'https://spreadsheets.google.com/feeds/list/0ApJXKMOVLglTdE04c2Y0N192VWJQSlVzTWpicDBqbEE/3/public/values?alt=json',
@@ -133,11 +133,13 @@ resumeApp.factory('sheets', ['$http', '$timeout', '$anchorScroll', function($htt
         return mapSheet(response.data);
       })
       .finally(function() {
+        if ($location.hash().length > 0) {
 
-        // Queue a scroll to anchor after the digest cycle
-        $timeout(function() {
-          $anchorScroll();
-        })
+          // Queue a scroll to anchor after the digest cycle
+          $timeout(function() {
+            $anchorScroll();
+          })
+        }
       });
   }
 
