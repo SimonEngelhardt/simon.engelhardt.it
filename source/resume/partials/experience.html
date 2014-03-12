@@ -22,7 +22,7 @@
 </p>
 <div ng-if="experience.extendeddescription" class="extended-description" ng-class="{'collapsed': !experience.extendedDescriptionVisible}">
   <a ng-click="experience.extendedDescriptionVisible = !experience.extendedDescriptionVisible" trigger-scroll-onclick class="expand-button">
-    <i class="fa" ng-class="{'fa-angle-right': !project.extendedDescriptionVisible, 'fa-angle-down': project.extendedDescriptionVisible}"></i>
+    <i class="fa" ng-class="{'fa-angle-right': !experience.extendedDescriptionVisible, 'fa-angle-down': experience.extendedDescriptionVisible}"></i>
     Further description
   </a>
   <p ng-show="experience.extendedDescriptionVisible">{{experience.extendeddescription}}</p>
