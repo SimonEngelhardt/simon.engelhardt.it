@@ -21,6 +21,7 @@ resumeApp.controller('ExperienceCtrl', ['$scope', 'sheets', '$log', function ($s
         dateFormat = 'MM/DD/YYYY'; // Date format from Google Sheets API
 
     angular.forEach(experiences, function(experience) {
+      experience.extendedDescriptionVisible = false;
       if (experience.start) experience.start = moment(experience.start, dateFormat);
       if (experience.end) {
         experience.end = moment(experience.end, dateFormat);
