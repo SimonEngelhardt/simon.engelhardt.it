@@ -93,6 +93,7 @@ header {
 .project {
   .url {
     display: block;
+    margin-bottom: $paragraph-margin-bottom/2;
   }
   .extended-description {
     &.collapsed {
