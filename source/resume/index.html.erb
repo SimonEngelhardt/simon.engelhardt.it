@@ -39,14 +39,16 @@ subtitle: Résumé
       </li>
     </ul>
     <hr/>
-    <a ng-click="secondaryExperiencesVisible = !secondaryExperiencesVisible" trigger-scroll-onclick class="expand-button">
-      <i class="fa" ng-class="{'fa-angle-right': !secondaryExperiencesVisible, 'fa-angle-down': secondaryExperiencesVisible}"></i>
-      Secondary (earlier and part-time) work experience
-    </a>
-    <ul ng-show="secondaryExperiencesVisible" class="no-bullet" ng-model="secondaryExperiences">
-      <li ng-repeat="experience in secondaryExperiences" class="experience" ng-include="'/resume/partials/experience.html'">
-      </li>
-    </ul>
+    <div class="extended-content" ng-class="{'collapsed': !secondaryExperiencesVisible}">
+      <a ng-click="secondaryExperiencesVisible = !secondaryExperiencesVisible" trigger-scroll-onclick class="expand-button">
+        <i class="fa" ng-class="{'fa-angle-right': !secondaryExperiencesVisible, 'fa-angle-down': secondaryExperiencesVisible}"></i>
+        Secondary (earlier and part-time) work experience
+      </a>
+      <ul ng-show="secondaryExperiencesVisible" class="no-bullet" ng-model="secondaryExperiences">
+        <li ng-repeat="experience in secondaryExperiences" class="experience" ng-include="'/resume/partials/experience.html'">
+        </li>
+      </ul>
+    </div>
   </div>
   <div id="education" ng-controller="EducationCtrl" class="section" data-magellan-destination="education" scroll-progress-meter='[data-magellan-arrival="education"] .progress .meter'>
     <h2>Education</h2>
@@ -91,7 +93,7 @@ subtitle: Résumé
 					</a>
 				</small>
 				<p>{{project.description}}</p>
-				<div ng-if="project.extendeddescription" class="extended-description" ng-class="{'collapsed': !project.extendedDescriptionVisible}">
+				<div ng-if="project.extendeddescription" class="extended-content" ng-class="{'collapsed': !project.extendedDescriptionVisible}">
 					<a ng-click="project.extendedDescriptionVisible = !project.extendedDescriptionVisible" trigger-scroll-onclick class="expand-button">
 						<i class="fa" ng-class="{'fa-angle-right': !project.extendedDescriptionVisible, 'fa-angle-down': project.extendedDescriptionVisible}"></i>
 						Further description
@@ -113,7 +115,7 @@ subtitle: Résumé
 			</li>
 		</ul>
   </div>
-  <div id="additional-info" ng-controller="InfoCtrl">
+  <div id="additional-info" ng-controller="InfoCtrl" class="section">
     <h2>Additional Info</h2>
     <dl>
       <dt>Birthday</dt>

@@ -20,7 +20,7 @@
 <p>
   {{experience.description}}
 </p>
-<div ng-if="experience.extendeddescription" class="extended-description" ng-class="{'collapsed': !experience.extendedDescriptionVisible}">
+<div ng-if="experience.extendeddescription" class="extended-content" ng-class="{'collapsed': !experience.extendedDescriptionVisible}">
   <a ng-click="experience.extendedDescriptionVisible = !experience.extendedDescriptionVisible" trigger-scroll-onclick class="expand-button">
     <i class="fa" ng-class="{'fa-angle-right': !experience.extendedDescriptionVisible, 'fa-angle-down': experience.extendedDescriptionVisible}"></i>
     Further description
