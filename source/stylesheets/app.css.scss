@@ -94,6 +94,10 @@ header {
   .url {
     display: block;
     margin-bottom: $paragraph-margin-bottom/2;
+    img {
+      height: 16px;
+      width: 16px;
+    }
   }
   .extended-description {
     &.collapsed {
