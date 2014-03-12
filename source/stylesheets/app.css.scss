@@ -90,6 +90,14 @@ header {
   margin-top: 1.5 * $paragraph-margin-bottom;
 }
 
+.extended-description {
+  &.collapsed {
+    .expand-button {
+      margin-bottom: $paragraph-margin-bottom;
+    }
+  }
+}
+
 .project {
   .url {
     display: block;
@@ -97,13 +105,6 @@ header {
     img {
       height: 16px;
       width: 16px;
-    }
-  }
-  .extended-description {
-    &.collapsed {
-      .expand-button {
-        margin-bottom: $paragraph-margin-bottom;
-      }
     }
   }
   .tags .label {
