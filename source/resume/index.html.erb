@@ -82,41 +82,41 @@ subtitle: Résumé
         <select ng-model="selectedRole" ng-options="role for role in roles" class="large-4 medium-5"></select>
       </label>
     </form>
-		<ul class="no-bullet">
-			<li ng-repeat="project in projects | filter:roleFilter" class="project">
+    <ul class="no-bullet">
+      <li ng-repeat="project in projects | filter:roleFilter" class="project">
         <hr/>
-				<h3>{{project.client}} <small>{{project.title}}</small></h3>
-				<small class="url">
-					<a href="{{project.url}}" target="_blank" title="{{project.urlnote}}">
-						<img ng-if="project.icon" ng-src="{{project.icon}}" alt="Web site icon">
-						{{project.url}}
-					</a>
-				</small>
-				<p>{{project.description}}</p>
-				<div ng-if="project.extendeddescription" class="extended-content" ng-class="{'collapsed': !project.extendedDescriptionVisible}">
-					<a ng-click="project.extendedDescriptionVisible = !project.extendedDescriptionVisible" trigger-scroll-onclick class="expand-button">
-						<i class="fa" ng-class="{'fa-angle-right': !project.extendedDescriptionVisible, 'fa-angle-down': project.extendedDescriptionVisible}"></i>
-						Further description
-					</a>
-					<p ng-show="project.extendedDescriptionVisible">{{project.extendeddescription}}</p>
-				</div>
-				<h4>Roles</h4>
-				<p class="tags">
-					<span ng-repeat="role in project.roles" class="label">{{role}}</span>
-				</p>
-				<h4>Years</h4>
-				<p class="years">
-					<span ng-repeat="year in allYears" class="label" ng-class="{secondary: project.years.indexOf(year) ===  -1}">{{year}}</span>
-				</p>
-				<h4>Tech</h4>
-				<p class="tags">
-					<span ng-repeat="tech in project.techs" ng-switch="skillHasDescription(tech)" class="label">
-						<a ng-switch-when="true" data-dropdown="skill-drop" dropdown-closer ng-click="selectSkill(tech)">{{tech}}</a>
-						<span ng-switch-default>{{tech}}</span>
-					</span>
-				</p>
-			</li>
-		</ul>
+        <h3>{{project.client}} <small>{{project.title}}</small></h3>
+        <small class="url">
+          <a href="{{project.url}}" target="_blank" title="{{project.urlnote}}">
+            <img ng-if="project.icon" ng-src="{{project.icon}}" alt="Web site icon">
+            {{project.url}}
+          </a>
+        </small>
+        <p>{{project.description}}</p>
+        <div ng-if="project.extendeddescription" class="extended-content" ng-class="{'collapsed': !project.extendedDescriptionVisible}">
+          <a ng-click="project.extendedDescriptionVisible = !project.extendedDescriptionVisible" trigger-scroll-onclick class="expand-button">
+            <i class="fa" ng-class="{'fa-angle-right': !project.extendedDescriptionVisible, 'fa-angle-down': project.extendedDescriptionVisible}"></i>
+            Further description
+          </a>
+          <p ng-show="project.extendedDescriptionVisible">{{project.extendeddescription}}</p>
+        </div>
+        <h4>Roles</h4>
+        <p class="tags">
+          <span ng-repeat="role in project.roles" class="label">{{role}}</span>
+        </p>
+        <h4>Years</h4>
+        <p class="years">
+          <span ng-repeat="year in allYears" class="label" ng-class="{secondary: project.years.indexOf(year) ===  -1}">{{year}}</span>
+        </p>
+        <h4>Tech</h4>
+        <p class="tags">
+          <span ng-repeat="tech in project.techs" ng-switch="skillHasDescription(tech)" class="label">
+            <a ng-switch-when="true" data-dropdown="skill-drop" dropdown-closer ng-click="selectSkill(tech)">{{tech}}</a>
+            <span ng-switch-default>{{tech}}</span>
+          </span>
+        </p>
+      </li>
+    </ul>
     <div id="skill-drop" data-dropdown-content class="f-dropdown content">
       <strong>
         {{selectedSkill.name}}
