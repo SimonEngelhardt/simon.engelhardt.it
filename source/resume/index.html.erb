@@ -110,10 +110,23 @@ subtitle: Résumé
 				</p>
 				<h4>Tech</h4>
 				<p class="tags">
-					<span ng-repeat="tech in project.techs" class="label">{{tech}}</span>
+					<span ng-repeat="tech in project.techs" ng-switch="skillHasDescription(tech)" class="label">
+						<a ng-switch-when="true" data-dropdown="skill-drop" dropdown-closer ng-click="selectSkill(tech)">{{tech}}</a>
+						<span ng-switch-default>{{tech}}</span>
+					</span>
 				</p>
 			</li>
 		</ul>
+    <div id="skill-drop" data-dropdown-content class="f-dropdown content">
+      <strong>
+        {{selectedSkill.name}}
+        <small>{{selectedSkill.category}}</small>
+      </strong>
+      Level <odometer value="selectedSkill.level || 0"></odometer> / {{maxSkillLevel}}
+      <div class="progress">
+        <span class="meter" ng-class="{animate: selectedSkill}" ng-style="{width: selectedSkill.level / maxSkillLevel * 100 + '%'}"></span>
+      </div>
+    </div>
   </div>
   <div id="additional-info" ng-controller="InfoCtrl" class="section">
     <h2>Additional Info</h2>

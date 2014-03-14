@@ -10,9 +10,12 @@ var resumeApp = angular.module('resumeApp', [])
   .config(function($locationProvider) {
     $locationProvider.html5Mode(true);
   })
-  .constant('birthdate', moment(new Date(1980, 6, 24)));
+  .constant('constants', {
+    birthdate: moment(new Date(1980, 6, 24)),
+    maxSkillLevel: 6
+  });
 
-resumeApp.controller('ExperienceCtrl', ['$scope', 'sheets', '$log', function ($scope, sheets, $log) {
+resumeApp.controller('ExperienceCtrl', ['$scope', 'sheets', 'scroll', function ($scope, sheets, scroll) {
   $scope.secondaryExperiencesVisible = false;
 
   sheets.getExperiences().then(function(experiences) {
@@ -43,10 +46,12 @@ resumeApp.controller('ExperienceCtrl', ['$scope', 'sheets', '$log', function ($s
 
     $scope.primaryExperiences = primaryExperiences;
     $scope.secondaryExperiences = secondaryExperiences;
+
+    scroll.anchorScrollAfterDigest();
   });
 }]);
 
-resumeApp.controller('EducationCtrl', ['$scope', 'sheets', '$log', function ($scope, sheets, $log) {
+resumeApp.controller('EducationCtrl', ['$scope', 'sheets', 'scroll', function ($scope, sheets, scroll) {
   sheets.getEducations().then(function(educations) {
     var dateFormat = 'MM/DD/YYYY'; // Date format from Google Sheets API
 
@@ -56,14 +61,18 @@ resumeApp.controller('EducationCtrl', ['$scope', 'sheets', '$log', function ($sc
     });
 
     $scope.educations = educations;
+
+    scroll.anchorScrollAfterDigest();
   });
 }]);
 
-resumeApp.controller('ProjectsCtrl', ['$scope', 'sheets', '$log', function ($scope, sheets, $log) {
-  $scope.roles = [];
+resumeApp.controller('ProjectsCtrl', ['$scope', 'sheets', 'constants', 'scroll', function ($scope, sheets, constants, scroll) {
   var unfilteredRole = 'All';
+  $scope.roles = [];
   $scope.selectedRole = unfilteredRole;
   $scope.allYears = [];
+  $scope.selectedSkill = undefined;
+  $scope.maxSkillLevel = constants.maxSkillLevel;
 
   for(var i = 2006; i <= 2014; i++) { // Could be calculated dynamically from projects
     $scope.allYears.push(i.toString());
@@ -76,10 +85,26 @@ resumeApp.controller('ProjectsCtrl', ['$scope', 'sheets', '$log', function ($sco
       angular.forEach(project.roles, function(role){
         if ($scope.roles.indexOf(role) === -1)
           $scope.roles.push(role);
-      })
+      });
     });
     $scope.roles.sort();
     $scope.roles.unshift(unfilteredRole);
+
+    scroll.anchorScrollAfterDigest();
+  });
+
+  sheets.getSkills().then(function(skills) {
+    $scope.skillHasDescription = function(name) {
+      return skills.some(function(skill) {
+        return skill.name === name;
+      });
+    }
+
+    $scope.selectSkill = function(name) {
+      $scope.selectedSkill = skills.filter(function(skill) {
+        return skill.name === name;
+      })[0];
+    }
   });
 
   $scope.roleFilter = function(project){
@@ -91,16 +116,17 @@ resumeApp.controller('ProjectsCtrl', ['$scope', 'sheets', '$log', function ($sco
   };
 }]);
 
-resumeApp.controller('InfoCtrl', ['$scope', 'birthdate', function($scope, birthdate) {
-  $scope.birthdate = birthdate;
-  $scope.age = moment().diff(birthdate, 'years');
+resumeApp.controller('InfoCtrl', ['$scope', 'constants', function($scope, constants) {
+  $scope.birthdate = constants.birthdate;
+  $scope.age = moment().diff($scope.birthdate, 'years');
 }]);
 
-resumeApp.factory('sheets', ['$http', '$location', '$timeout', '$anchorScroll', function($http, $location, $timeout, $anchorScroll){
+resumeApp.factory('sheets', ['$http', '$location', function($http, $location) {
   var sheetUrls = {
         projects:   'https://spreadsheets.google.com/feeds/list/0ApJXKMOVLglTdE04c2Y0N192VWJQSlVzTWpicDBqbEE/1/public/values?alt=json',
         experience: 'https://spreadsheets.google.com/feeds/list/0ApJXKMOVLglTdE04c2Y0N192VWJQSlVzTWpicDBqbEE/3/public/values?alt=json',
-        education:  'https://spreadsheets.google.com/feeds/list/0ApJXKMOVLglTdE04c2Y0N192VWJQSlVzTWpicDBqbEE/4/public/values?alt=json'
+        education:  'https://spreadsheets.google.com/feeds/list/0ApJXKMOVLglTdE04c2Y0N192VWJQSlVzTWpicDBqbEE/4/public/values?alt=json',
+        skills:  'https://spreadsheets.google.com/feeds/list/0ApJXKMOVLglTdE04c2Y0N192VWJQSlVzTWpicDBqbEE/2/public/values?alt=json'
       },
       keyPrefix = 'gsx$',
       valuePropertyName = '$t';
@@ -132,15 +158,6 @@ resumeApp.factory('sheets', ['$http', '$location', '$timeout', '$anchorScroll', 
     return $http.get(url)
       .then(function(response) {
         return mapSheet(response.data);
-      })
-      .finally(function() {
-        if ($location.hash().length > 0) {
-
-          // Queue a scroll to anchor after the digest cycle
-          $timeout(function() {
-            $anchorScroll();
-          })
-        }
       });
   }
 
@@ -153,8 +170,27 @@ resumeApp.factory('sheets', ['$http', '$location', '$timeout', '$anchorScroll', 
     },
     getExperiences: function() {
       return getSheet(sheetUrls.experience);
+    },
+    getSkills: function() {
+      return getSheet(sheetUrls.skills);
     }
   };
+}]);
+
+resumeApp.factory('scroll', ['$location', '$timeout', '$anchorScroll', function($location, $timeout, $anchorScroll) {
+  return {
+    anchorScrollAfterDigest: function() {
+
+      // Only scroll if location contains an anchor hash
+      if ($location.hash().length > 0) {
+
+        // Queue a scroll to anchor after the digest cycle
+        $timeout(function() {
+          $anchorScroll();
+        })
+      }
+    }
+  }
 }]);
 
 // Scroll progress meter directive - requires jQuery
@@ -202,3 +238,33 @@ resumeApp.directive('triggerScrollOnclick', ['$timeout', '$window', function($ti
     });
   };
 }]);
+
+// Directive to close all existing dropdowns.
+// Workaround for Foundation dropdowns not functioning too well when reusing popup element for several targets.
+resumeApp.directive('dropdownCloser', ['$document', function ($document) {
+  return function(scope, element, attr) {
+    element.on('mousedown', function(event) {
+      $document.foundation('dropdown', 'closeall');
+    });
+  };
+}]);
+
+resumeApp.directive('odometer', function () {
+  return {
+    restrict: 'E',
+    scope : {
+      endValue : '=value'
+    },
+    link: function(scope, element, attr) {
+      var od = new Odometer({
+          el : element[0],
+          value : 0,   // default value
+          duration: 300
+      });
+
+      scope.$watch('endValue', function() {
+        od.update(scope.endValue);
+      });
+    }
+  };
+});

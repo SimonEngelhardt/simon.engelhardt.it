@@ -1,6 +1,7 @@
 @import "settings";
 @import "foundation.scss";
 @import "fa-angles.css";
+@import "/bower_components/odometer/themes/odometer-theme-default.css";
 
 header {
   margin-top: $column-gutter/2;
@@ -115,10 +116,34 @@ header {
       width: 16px;
     }
   }
-  .tags .label {
-    margin-right: 0.5em;
+  .tags {
+    .label {
+      margin-right: 0.5em;
+      a {
+        color: #fff; //TODO: replace with proper var
+        border-bottom: $has-tip-border-bottom;
+      }
+      &:hover {
+        color: $label-font-color-alt;
+      }
+    }
   }
   .years {
     white-space: nowrap;
+  }
+}
+
+#skill-drop {
+  strong {
+    display: block;
+    margin-bottom: $paragraph-margin-bottom/2;
+    small {
+      display: block;
+      font-weight: normal;
+    }
+  }
+  .meter {
+    width: 0%;
+    @include single-transition(width, 1s);
   }
 }
