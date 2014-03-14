@@ -67,6 +67,13 @@ header {
   dd.active a {
     @include radius(0);
   }
+
+  .progress {
+    height: rem-calc(3);
+    border-width: 0;
+    padding: rem-calc(0);
+    margin-bottom: rem-calc(0);
+  }
 }
 
 .section {
