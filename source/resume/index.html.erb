@@ -34,7 +34,7 @@ subtitle: Résumé
 <div ng-app="resumeApp" ng-cloak>
   <div id="experience" ng-controller="ExperienceCtrl" class="section experiences" data-magellan-destination="experience" scroll-progress-meter='[data-magellan-arrival="experience"] .progress .meter'>
     <h2>Experience</h2>
-    <ul class="no-bullet" ng-model="primaryExperiences">
+    <ul class="no-bullet">
       <li ng-repeat="experience in primaryExperiences" class="experience" ng-include="'/resume/partials/experience.html'">
       </li>
     </ul>
@@ -44,7 +44,7 @@ subtitle: Résumé
         <i class="fa" ng-class="{'fa-angle-right': !secondaryExperiencesVisible, 'fa-angle-down': secondaryExperiencesVisible}"></i>
         Secondary (earlier and part-time) work experience
       </a>
-      <ul ng-show="secondaryExperiencesVisible" class="no-bullet" ng-model="secondaryExperiences">
+      <ul ng-show="secondaryExperiencesVisible" class="no-bullet">
         <li ng-repeat="experience in secondaryExperiences" class="experience" ng-include="'/resume/partials/experience.html'">
         </li>
       </ul>
