@@ -102,7 +102,10 @@ subtitle: Résumé
         </div>
         <h4>Roles</h4>
         <p class="tags">
-          <span ng-repeat="role in project.roles" class="label">{{role}}</span>
+          <span ng-repeat="role in project.roles" ng-switch="skillHasDescription(role)" class="label">
+            <a ng-switch-when="true" data-dropdown="skill-drop" dropdown-closer ng-click="selectSkill(role)">{{role}}</a>
+            <span ng-switch-default>{{role}}</span>
+          </span>
         </p>
         <h4>Years</h4>
         <p class="years">
