@@ -198,27 +198,23 @@ resumeApp.directive('scrollProgressMeter', ['$window', '$timeout', function($win
   return function(scope, element, attr) {
     var meter = angular.element(attr.scrollProgressMeter);
 
-    var throttledScrollHandler = function() {
-      var timeoutPromise = $timeout(function() {
-        $timeout.cancel(timeoutPromise);
+    var throttledScrollHandler = _.throttle(function() {
+      var top = element.offset().top;
+      var bottom = top + element.outerHeight();
 
-        var top = element.offset().top;
-        var bottom = top + element.outerHeight();
+      // Account for height of meter element's offset parent if it is currently in a fixed position (used when meter is in a fixed navigation bar, for example)
+      var scrollTop = angular.element($window).scrollTop();
+      var meterOffsetParent = meter.offsetParent();
+      if (meterOffsetParent.css('position') === 'fixed') {
+        scrollTop = scrollTop + meterOffsetParent.outerHeight();
+      }
 
-        // Account for height of meter element's offset parent if it is currently in a fixed position (used when meter is in a fixed navigation bar, for example)
-        var scrollTop = angular.element($window).scrollTop();
-        var meterOffsetParent = meter.offsetParent();
-        if (meterOffsetParent.css('position') === 'fixed') {
-          scrollTop = scrollTop + meterOffsetParent.outerHeight();
-        }
+      var progress = ((bottom - scrollTop)/(bottom - top)) * 100;
+      if (progress > 100) progress = 100;
+      else if (progress < 0) progress = 0;
 
-        var progress = ((bottom - scrollTop)/(bottom - top)) * 100;
-        if (progress > 100) progress = 100;
-        else if (progress < 0) progress = 0;
-
-        meter.css('width', progress + '%');
-      }, 30); // throttle to approx 30 FPS
-    }
+      meter.css('width', progress + '%');
+    }, 30); // throttle to approx 30 FPS
 
     angular.element($window).on('scroll resize', throttledScrollHandler);
   }
