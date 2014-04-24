@@ -1,10 +1,12 @@
 $(document).foundation();
 
 // Override LinkedIn plugin icon style (see also CSS)
-IN.Event.on(IN, 'systemReady', function() {
-  $('.li-connect-mark')
-  .addClass('fi-social-linkedin');
-});
+if (typeof(IN) !== 'undefined') {
+  IN.Event.on(IN, 'systemReady', function() {
+    $('.li-connect-mark')
+    .addClass('fi-social-linkedin');
+  });
+}
 
 var resumeApp = angular.module('resumeApp', [])
   .config(function($locationProvider) {
