@@ -107,9 +107,9 @@ subtitle: Résumé
             <span ng-switch-default>{{role}}</span>
           </span>
         </p>
-        <h4>Years</h4>
-        <p class="years">
-          <span ng-repeat="year in allYears" class="label" ng-class="{secondary: project.years.indexOf(year) ===  -1}">{{year}}</span>
+        <h4>Timeline</h4>
+        <p class="timeline">
+          <span ng-repeat="year in allYears" class="year" ng-style="{width: 100/allYears.length + '%'}" ng-class="{inactive: project.years.indexOf(year) ===  -1}">{{year}}</span>
         </p>
         <h4>Tech</h4>
         <p class="tags">

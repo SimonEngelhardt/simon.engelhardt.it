@@ -132,8 +132,17 @@ header {
       }
     }
   }
-  .years {
-    white-space: nowrap;
+  .timeline {
+    .year {
+      display: inline-block;
+      text-align: center;
+      font-size: 50%;
+      border-top: rem-calc(5) solid $primary-color;
+      &.inactive {
+        border-top-color: #eee;
+        text-indent: -9999px;
+      }
+    }
   }
 }
 
