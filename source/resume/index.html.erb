@@ -120,7 +120,7 @@ subtitle: Résumé
         </p>
       </li>
     </ul>
-    <div id="skill-drop" data-dropdown-content class="f-dropdown content">
+    <div id="skill-drop" data-dropdown-content class="f-dropdown content skill">
       <strong>
         {{selectedSkill.name}}
         <small>{{selectedSkill.category}}</small>
@@ -129,6 +129,7 @@ subtitle: Résumé
       <div class="progress">
         <span class="meter" ng-style="{width: selectedSkill.level / maxSkillLevel * 100 + '%'}"></span>
       </div>
+      <a href="/resume/skills?highlight={{selectedSkill.name}}#{{removeWhiteSpace(selectedSkill.category)}}" target="_self">Show all skills</a>
     </div>
   </div>
   <div id="additional-info" ng-controller="InfoCtrl" class="section">

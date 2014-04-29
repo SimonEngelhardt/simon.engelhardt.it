@@ -68,13 +68,14 @@ resumeApp.controller('EducationCtrl', ['$scope', 'sheets', 'scroll', function ($
   });
 }]);
 
-resumeApp.controller('ProjectsCtrl', ['$scope', 'sheets', 'constants', 'scroll', function ($scope, sheets, constants, scroll) {
+resumeApp.controller('ProjectsCtrl', ['$scope', 'sheets', 'constants', 'scroll', 'util', function ($scope, sheets, constants, scroll, util) {
   var unfilteredRole = 'All';
   $scope.roles = [];
   $scope.selectedRole = unfilteredRole;
   $scope.allYears = [];
   $scope.selectedSkill = undefined;
   $scope.maxSkillLevel = constants.maxSkillLevel;
+  $scope.removeWhiteSpace = util.removeWhiteSpace;
 
   for(var i = 2006; i <= 2014; i++) { // Could be calculated dynamically from projects
     $scope.allYears.push(i.toString());
@@ -121,6 +122,18 @@ resumeApp.controller('ProjectsCtrl', ['$scope', 'sheets', 'constants', 'scroll',
 resumeApp.controller('InfoCtrl', ['$scope', 'constants', function($scope, constants) {
   $scope.birthdate = constants.birthdate;
   $scope.age = moment().diff($scope.birthdate, 'years');
+}]);
+
+resumeApp.controller('SkillsCtrl', ['$scope', 'sheets', 'constants', 'scroll', 'util', '$location', function($scope, sheets, constants, scroll, util, $location) {
+  $scope.removeWhiteSpace = util.removeWhiteSpace;
+  $scope.maxSkillLevel = constants.maxSkillLevel;
+  $scope.highlight = $location.search().highlight;
+
+  sheets.getSkills()
+    .then(function(skills) {
+      $scope.categories = _.groupBy(skills, 'category');
+      scroll.anchorScrollAfterDigest();
+    });
 }]);
 
 resumeApp.factory('sheets', ['$http', '$location', function($http, $location) {
@@ -191,6 +204,14 @@ resumeApp.factory('scroll', ['$location', '$timeout', '$anchorScroll', function(
           $anchorScroll();
         })
       }
+    }
+  }
+}]);
+
+resumeApp.factory('util', [function() {
+  return {
+    removeWhiteSpace: function(str) {
+      return angular.isString(str) ? str.replace(/\s/g, '') : str;
     }
   }
 }]);
@@ -266,3 +287,21 @@ resumeApp.directive('odometer', function () {
     }
   };
 });
+
+resumeApp.directive('bindWidth', ['constants', '$timeout', function (constants, $timeout) {
+  return {
+    restrict: 'A',
+    scope : {
+      level: '=bindWidth'
+    },
+    link: function(scope, element, attr) {
+      scope.$watch('level', function() {
+
+        // Wait until after digest to set width, so the transition will be animated
+        $timeout(function() {
+          element.css('width', scope.level / constants.maxSkillLevel * 100 + '%');
+        });
+      });
+    }
+  };
+}]);

@@ -1,3 +1,4 @@
+//= require lodash/dist/lodash.min
 //= require jquery/dist/jquery.min
 //= require angular/angular.min
 //= require foundation/js/foundation.min

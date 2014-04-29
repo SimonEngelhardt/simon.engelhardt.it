@@ -1,0 +1,39 @@
+---
+title: Simon Engelhardt
+subtitle: Résumé
+---
+
+<div ng-app="resumeApp">
+  <div id="skills" ng-controller="SkillsCtrl" class="skills">
+    <div data-magellan-expedition="fixed" data-options="destination_threshold:80;">
+      <a href="/resume" target="_self" class="back"><i class="fa fa-angle-left"></i> Back to résumé</a>
+      <dl class="sub-nav">
+        <dd ng-repeat="(category, skills) in categories" data-magellan-arrival="{{removeWhiteSpace(category)}}">
+          <a href="#{{removeWhiteSpace(category)}}">
+            {{category}}
+          </a>
+        </dd>
+      </dl>
+    </div>
+    <h2>Skills</h2>
+    <div class="section" ng-repeat="(category, skills) in categories" id="{{removeWhiteSpace(category)}}" data-magellan-destination="{{removeWhiteSpace(category)}}">
+      <h3>{{category}}</h3>
+      <ul class="no-bullet">
+        <li ng-repeat="skill in skills | orderBy:'name'" class="skill" ng-class="{highlight: skill.name === highlight}">
+          <div>
+            {{skill.name}}
+            <small>
+              <ng-pluralize count="skill.years"
+                when="{'one': '1 year of experience',
+                       'other': '{} years of experience'}">
+              </ng-pluralize>
+            </small>
+          </div>
+          <div class="progress" title="Level {{skill.level}} / {{maxSkillLevel}}">
+            <span class="meter" bind-width="skill.level"></span>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
