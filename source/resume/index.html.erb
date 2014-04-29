@@ -100,7 +100,7 @@ subtitle: Résumé
           </a>
           <p ng-show="project.extendedDescriptionVisible">{{project.extendeddescription}}</p>
         </div>
-        <h4>Roles</h4>
+        <h4>My Roles</h4>
         <p class="tags">
           <span ng-repeat="role in project.roles" ng-switch="skillHasDescription(role)" class="label">
             <a ng-switch-when="true" data-dropdown="skill-drop" dropdown-closer ng-click="selectSkill(role)">{{role}}</a>
