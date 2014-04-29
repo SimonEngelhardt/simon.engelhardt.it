@@ -113,7 +113,7 @@ subtitle: Résumé
         </p>
         <h4>Tech</h4>
         <p class="tags">
-          <span ng-repeat="tech in project.techs" ng-switch="skillHasDescription(tech)" class="label">
+          <span ng-repeat="tech in project.techAndServices" ng-switch="skillHasDescription(tech)" class="label">
             <a ng-switch-when="true" data-dropdown="skill-drop" dropdown-closer ng-click="selectSkill(tech)">{{tech}}</a>
             <span ng-switch-default>{{tech}}</span>
           </span>

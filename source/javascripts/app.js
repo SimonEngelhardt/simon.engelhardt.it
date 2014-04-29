@@ -89,6 +89,9 @@ resumeApp.controller('ProjectsCtrl', ['$scope', 'sheets', 'constants', 'scroll',
         if ($scope.roles.indexOf(role) === -1)
           $scope.roles.push(role);
       });
+      if (angular.isArray(project.techs) && angular.isArray(project.services)) project.techAndServices = project.techs.concat(project.services);
+      else if (angular.isArray(project.techs)) project.techAndServices = project.techs;
+      else if (angular.isArray(project.services)) project.techAndServices = project.services;
     });
     $scope.roles.sort();
     $scope.roles.unshift(unfilteredRole);
