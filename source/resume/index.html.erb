@@ -107,16 +107,16 @@ subtitle: Résumé
             <span ng-switch-default>{{role}}</span>
           </span>
         </p>
-        <h4>Timeline</h4>
-        <p class="timeline">
-          <span ng-repeat="year in allYears" class="year" ng-style="{width: 100/allYears.length + '%'}" ng-class="{inactive: project.years.indexOf(year) ===  -1}">{{year}}</span>
-        </p>
         <h4>Tech</h4>
         <p class="tags">
           <span ng-repeat="tech in project.techAndServices" ng-switch="skillHasDescription(tech)" class="label">
             <a ng-switch-when="true" data-dropdown="skill-drop" dropdown-closer ng-click="selectSkill(tech)">{{tech}}</a>
             <span ng-switch-default>{{tech}}</span>
           </span>
+        </p>
+        <h4>Timeline</h4>
+        <p class="timeline">
+          <span ng-repeat="year in allYears" class="year" ng-style="{width: 100/allYears.length + '%'}" ng-class="{inactive: project.years.indexOf(year) ===  -1}">{{year}}</span>
         </p>
       </li>
     </ul>
