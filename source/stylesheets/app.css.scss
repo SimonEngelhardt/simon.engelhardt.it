@@ -117,6 +117,9 @@ header {
       width: 16px;
     }
   }
+  .label {
+    margin-bottom: 0; // Not sure Zurb intended this to be necessary, see https://github.com/zurb/foundation/commit/f60c23f826a4bd38944314c0f586bf9863847200#commitcomment-6161150
+  }
   .tags {
     .label {
       margin-right: 0.5em;
