@@ -134,9 +134,10 @@ subtitle: Résumé
   </div>
   <div id="additional-info" ng-controller="InfoCtrl" class="section">
     <h2>Additional Info</h2>
-    <dl>
-      <dt>Birthday</dt>
-      <dd>{{birthdate.toDate() | date}} (age {{age}})</dd>
-    </dl>
+    <ul class="inline-list">
+      <li class="fi-marker" title="Location">New York City</li>
+      <li class="fi-power" title="Birthday">{{birthdate.toDate() | date}} (age {{age}})</li>
+      <li class="fi-male-female" title="Maritial Status">Married</li>
+    </ul>
   </div>
 </div>
