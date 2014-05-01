@@ -4,6 +4,7 @@
   "private": "true",
   "dependencies": {
     "foundation": "zurb/bower-foundation",
+    "foundation-icon-fonts": "zurb/foundation-icon-fonts",
     "momentjs": "~2.5.1",
     "angular": "~1.2.14",
     "odometer": "~0.4.6",
