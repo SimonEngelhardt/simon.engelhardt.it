@@ -134,10 +134,29 @@ subtitle: Résumé
   </div>
   <div id="additional-info" ng-controller="InfoCtrl" class="section">
     <h2>Additional Info</h2>
-    <ul class="inline-list">
-      <li class="fi-marker" title="Location">New York City</li>
-      <li class="fi-power" title="Birthday">{{birthdate.toDate() | date}} (age {{age}})</li>
-      <li class="fi-male-female" title="Maritial Status">Married</li>
+    <ul class="no-bullet">
+      <li class="fi-marker" title="Location">
+        New York City
+      </li>
+      <li class="fi-power" title="Birthday">
+        {{birthdate.toDate() | date}} (age {{age}})
+      </li>
+      <li class="fi-male-female" title="Maritial Status">
+        Married
+      </li>
+      <li class="fi-flag" title="Languages">
+        <ul class="languages no-bullet">
+          <li>
+            English, Danish <small>Native or bilingual proficiency</small>
+          </li>
+          <li>
+            German <small>Limited working proficiency</small>
+          </li>
+          <li>
+            French, Spanish <small>Elementary proficiency</small>
+          </li>
+        </ul>
+      </li>
     </ul>
   </div>
 </div>

@@ -171,8 +171,30 @@ header {
   margin-bottom: 0.5em;
 }
 
-#additional-info li:before {
-  margin-right: 0.5rem;
+#additional-info {
+  @media #{$medium-up} {
+    ul {
+      @include inline-list;
+    }
+  }
+  & > ul {
+    & > li {
+      margin-bottom: 0.75rem;
+      &:before {
+        width: 1em;
+        @media #{$small-only} {
+          width: 1.25em;
+        }
+      }
+      .languages {
+        display: inline-block;
+        vertical-align: top;
+        @media #{$small-only} {
+          margin-left: 0;
+        }
+      }
+    }
+  }
 }
 
 footer a {
