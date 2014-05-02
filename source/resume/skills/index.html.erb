@@ -5,7 +5,7 @@ subtitle: Résumé
 
 <div ng-app="resumeApp">
   <div id="skills" ng-controller="SkillsCtrl" class="skills">
-    <div data-magellan-expedition="fixed" data-options="destination_threshold:80;">
+    <div data-magellan-expedition="fixed">
       <a href="/resume" target="_self" class="back"><i class="fa fa-angle-left"></i> Back to résumé</a>
       <dl class="sub-nav">
         <dd ng-repeat="(category, skills) in categories" data-magellan-arrival="{{removeWhiteSpace(category)}}">

@@ -3,7 +3,7 @@ title: Simon Engelhardt
 subtitle: Résumé
 ---
 
-<div data-magellan-expedition="fixed" data-options="destination_threshold:80;">
+<div data-magellan-expedition="fixed" data-options="destination_threshold:60;">
   <dl class="sub-nav">
     <dd data-magellan-arrival="experience">
       <a href="#experience">
@@ -38,7 +38,6 @@ subtitle: Résumé
       <li ng-repeat="experience in primaryExperiences" class="experience" ng-include="'/resume/partials/experience.html'">
       </li>
     </ul>
-    <hr/>
     <div class="extended-content" ng-class="{'collapsed': !secondaryExperiencesVisible}">
       <a ng-click="secondaryExperiencesVisible = !secondaryExperiencesVisible" trigger-scroll-onclick class="expand-button">
         <i class="fa" ng-class="{'fa-angle-right': !secondaryExperiencesVisible, 'fa-angle-down': secondaryExperiencesVisible}"></i>
@@ -54,7 +53,6 @@ subtitle: Résumé
     <h2>Education</h2>
     <ul class="no-bullet">
       <li ng-repeat="education in educations" class="education">
-        <hr/>
         <h3>
           {{education.degree}}, {{education.field}}
           <small><a href="{{education.url}}" target="_blank">{{education.school}}</a></small>
@@ -76,7 +74,7 @@ subtitle: Résumé
   </div>
   <div id="projects" ng-controller="ProjectsCtrl" class="section" data-magellan-destination="projects" scroll-progress-meter='[data-magellan-arrival="projects"] .progress .meter'>
     <h2>Selected projects</h2>
-    <form>
+    <form class="filters">
       <label>
         Filter by role<br/>
         <select ng-model="selectedRole" ng-options="role for role in roles" class="large-4 medium-5"></select>
@@ -84,7 +82,6 @@ subtitle: Résumé
     </form>
     <ul class="no-bullet">
       <li ng-repeat="project in projects | filter:roleFilter" class="project">
-        <hr/>
         <h3>{{project.client}} <small>{{project.title}}</small></h3>
         <small class="url">
           <a href="{{project.url}}" target="_blank" title="{{project.urlnote}}">
