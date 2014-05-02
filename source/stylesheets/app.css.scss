@@ -124,6 +124,10 @@ header {
 }
 
 .project {
+  margin-bottom: 2 * $paragraph-margin-bottom;
+  .timeline {
+    margin-bottom: 0.5rem;
+  }
   .url {
     display: block;
     margin-bottom: $paragraph-margin-bottom/2;

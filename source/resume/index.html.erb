@@ -89,6 +89,9 @@ subtitle: Résumé
             {{project.url}}
           </a>
         </small>
+        <p class="timeline">
+          <span ng-repeat="year in allYears" class="year" ng-style="{width: 100/allYears.length + '%'}" ng-class="{inactive: project.years.indexOf(year) ===  -1}">{{year}}</span>
+        </p>
         <p>{{project.description}}</p>
         <div ng-if="project.extendeddescription" class="extended-content" ng-class="{'collapsed': !project.extendedDescriptionVisible}">
           <a ng-click="project.extendedDescriptionVisible = !project.extendedDescriptionVisible" trigger-scroll-onclick class="expand-button">
@@ -110,10 +113,6 @@ subtitle: Résumé
             <a ng-switch-when="true" data-dropdown="skill-drop" dropdown-closer ng-click="selectSkill(tech)">{{tech}}</a>
             <span ng-switch-default>{{tech}}</span>
           </span>
-        </p>
-        <h4>Timeline</h4>
-        <p class="timeline">
-          <span ng-repeat="year in allYears" class="year" ng-style="{width: 100/allYears.length + '%'}" ng-class="{inactive: project.years.indexOf(year) ===  -1}">{{year}}</span>
         </p>
       </li>
     </ul>
