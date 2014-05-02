@@ -77,7 +77,7 @@ resumeApp.controller('ProjectsCtrl', ['$scope', 'sheets', 'constants', 'scroll',
   $scope.maxSkillLevel = constants.maxSkillLevel;
   $scope.removeWhiteSpace = util.removeWhiteSpace;
 
-  for(var i = 2006; i <= 2014; i++) { // Could be calculated dynamically from projects
+  for(var i = 2003; i <= 2014; i++) { // FIXME: Should be calculated dynamically from projects
     $scope.allYears.push(i.toString());
   }
 
