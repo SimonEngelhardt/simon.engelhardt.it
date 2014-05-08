@@ -172,13 +172,6 @@ header {
   .tags {
     .label {
       margin-right: 0.5em;
-      a {
-        color: #fff; //TODO: replace with proper var
-        border-bottom: $has-tip-border-bottom;
-      }
-      &:hover {
-        color: $label-font-color-alt;
-      }
     }
   }
 }
