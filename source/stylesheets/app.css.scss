@@ -119,6 +119,32 @@ header {
   }
 }
 
+.timeline {
+  .year {
+    display: inline-block;
+    text-align: center;
+    font-size: 50%;
+    border-top: rem-calc(5) solid #eee;
+    text-indent: -9999px;
+    &.active {
+      border-top-color: $primary-color;
+      text-indent: initial;
+      @media #{$small-only} {
+        text-indent: -9999px;
+        &.first, &.last {
+          text-indent: initial;
+        }
+        &.first {
+          text-align: left;
+        }
+        &.last {
+          text-align: right;
+        }
+      }
+    }
+  }
+}
+
 .filters {
   margin-bottom: 1rem;
 }
@@ -152,18 +178,6 @@ header {
       }
       &:hover {
         color: $label-font-color-alt;
-      }
-    }
-  }
-  .timeline {
-    .year {
-      display: inline-block;
-      text-align: center;
-      font-size: 50%;
-      border-top: rem-calc(5) solid $primary-color;
-      &.inactive {
-        border-top-color: #eee;
-        text-indent: -9999px;
       }
     }
   }

@@ -1,4 +1,7 @@
 <h3>{{experience.title}} <small><a href="{{experience.url}}" target="_blank" title="{{experience.urlnote}}">{{experience.company}}</a></small></h3>
+<div class="timeline" ng-show="experience.years">
+  <span ng-repeat="year in allYears" class="year" ng-style="{width: 100/allYears.length + '%'}" ng-class="{active: experience.years.indexOf(year) !== -1, first: experience.years.indexOf(year) === 0, last: experience.years.indexOf(year) === experience.years.length - 1}">{{year}}</span>
+</div>
 <p class="details">
   {{experience.start.toDate() | date:experience.dateFormat}} – {{experience.current ? 'Present' : experience.end.toDate() | date:experience.dateFormat}}
   (<ng-pluralize

@@ -14,11 +14,18 @@ var resumeApp = angular.module('resumeApp', [])
   })
   .constant('constants', {
     birthdate: moment(new Date(1980, 6, 24)),
-    maxSkillLevel: 6
-  });
+    maxSkillLevel: 6,
+    allYears: []
+  })
+  .config(['constants', function(constants) {
+    for(var i = 1995; i <= moment().year(); i++) { // FIXME: Ideally, the initial year would be calculated dynamically from experiences, educations and projects
+      constants.allYears.push(i.toString());
+    }
+  }]);
 
-resumeApp.controller('ExperienceCtrl', ['$scope', 'sheets', 'scroll', function ($scope, sheets, scroll) {
+resumeApp.controller('ExperienceCtrl', ['$scope', 'sheets', 'scroll', 'constants', function ($scope, sheets, scroll, constants) {
   $scope.secondaryExperiencesVisible = false;
+  $scope.allYears = constants.allYears;
 
   sheets.getExperiences().then(function(experiences) {
     var primaryExperiences = [],
@@ -35,7 +42,13 @@ resumeApp.controller('ExperienceCtrl', ['$scope', 'sheets', 'scroll', function (
         experience.end = moment();
         experience.current = true;
       }
-      if (experience.start && experience.end) experience.duration = moment.duration(experience.end - experience.start);
+      if (experience.start && experience.end) {
+        experience.duration = moment.duration(experience.end - experience.start);
+        experience.years = [];
+        for (var i = experience.start.year(); i <= experience.end.year(); i++) {
+          experience.years.push(i.toString());
+        }
+      }
       if (experience.secondary) {
         experience.dateFormat = 'yyyy';
         secondaryExperiences.push(experience);
@@ -53,13 +66,20 @@ resumeApp.controller('ExperienceCtrl', ['$scope', 'sheets', 'scroll', function (
   });
 }]);
 
-resumeApp.controller('EducationCtrl', ['$scope', 'sheets', 'scroll', function ($scope, sheets, scroll) {
+resumeApp.controller('EducationCtrl', ['$scope', 'sheets', 'scroll', 'constants', function ($scope, sheets, scroll, constants) {
+  $scope.allYears = constants.allYears;
   sheets.getEducations().then(function(educations) {
     var dateFormat = 'MM/DD/YYYY'; // Date format from Google Sheets API
 
     angular.forEach(educations, function(education) {
       if (education.start) education.start = moment(education.start, dateFormat);
       if (education.end) education.end = moment(education.end, dateFormat);
+      if (education.start && education.end) {
+        education.years = [];
+        for (var i = education.start.year(); i <= education.end.year(); i++) {
+          education.years.push(i.toString());
+        }
+      }
     });
 
     $scope.educations = educations;
@@ -72,14 +92,10 @@ resumeApp.controller('ProjectsCtrl', ['$scope', 'sheets', 'constants', 'scroll',
   var unfilteredRole = 'All';
   $scope.roles = [];
   $scope.selectedRole = unfilteredRole;
-  $scope.allYears = [];
+  $scope.allYears = constants.allYears;
   $scope.selectedSkill = undefined;
   $scope.maxSkillLevel = constants.maxSkillLevel;
   $scope.removeWhiteSpace = util.removeWhiteSpace;
-
-  for(var i = 2003; i <= 2014; i++) { // FIXME: Should be calculated dynamically from projects
-    $scope.allYears.push(i.toString());
-  }
 
   sheets.getProjects().then(function(projects){
     $scope.projects = projects;

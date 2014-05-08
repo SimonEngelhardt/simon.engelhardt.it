@@ -57,6 +57,9 @@ subtitle: Résumé
           {{education.degree}}, {{education.field}}
           <small><a href="{{education.url}}" target="_blank">{{education.school}}</a></small>
         </h3>
+        <div class="timeline" ng-show="education.years">
+          <span ng-repeat="year in allYears" class="year" ng-style="{width: 100/allYears.length + '%'}" ng-class="{active: education.years.indexOf(year) !== -1, first: education.years.indexOf(year) === 0, last: education.years.indexOf(year) === education.years.length - 1}">{{year}}</span>
+        </div>
         <p class="details">
           {{education.start.toDate() | date:'yyyy'}} – {{education.end.toDate() | date:'yyyy'}}, {{education.location}}
         </p>
@@ -89,9 +92,9 @@ subtitle: Résumé
             {{project.url}}
           </a>
         </small>
-        <p class="timeline">
-          <span ng-repeat="year in allYears" class="year" ng-style="{width: 100/allYears.length + '%'}" ng-class="{inactive: project.years.indexOf(year) ===  -1}">{{year}}</span>
-        </p>
+        <div class="timeline" ng-show="project.years">
+          <span ng-repeat="year in allYears" class="year" ng-style="{width: 100/allYears.length + '%'}" ng-class="{active: project.years.indexOf(year) !== -1, first: project.years.indexOf(year) === 0, last: project.years.indexOf(year) === experience.years.length - 1}">{{year}}</span>
+        </div>
         <p>{{project.description}}</p>
         <div ng-if="project.extendeddescription" class="extended-content" ng-class="{'collapsed': !project.extendedDescriptionVisible}">
           <a ng-click="project.extendedDescriptionVisible = !project.extendedDescriptionVisible" trigger-scroll-onclick class="expand-button">
