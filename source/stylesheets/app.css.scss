@@ -23,12 +23,31 @@ header {
   }
 
   .social {
-    display: inline-block;
+    @media screen {
+      @include inline-list;
+      display: inline-block;
 
-    // Match responsive h3 font size for social icons
-    font-size: $h3-font-size - rem-calc(5);
-    @media #{$medium-up} {
-      font-size: $h3-font-size;
+      // Match responsive h3 font size for social icons
+      font-size: $h3-font-size - rem-calc(5);
+      @media #{$medium-up} {
+        font-size: $h3-font-size;
+      }
+    }
+    @media print {
+      list-style-type: none;
+
+      font-size: $small-font-size;
+
+      // The default style has URLs in parentheses. We don't want that here.
+      a[href]:after { content: " " attr(href); }
+
+      // We'll have to use the touch media queries for hiding the LinkedIn plugin as unfortunately they can't be combined with the print queries (such as hide-for-print)
+      .hide-for-touch {
+        display: none !important;
+      }
+      .show-for-touch {
+        display: initial !important;
+      }
     }
 
     // Override LinkedIn plugin icon style (see also JS)
@@ -99,12 +118,20 @@ header {
 
 .expand-button {
   display: block;
+  @media print {
+    display: none;
+  }
 }
 
 .extended-content {
   &.collapsed {
     .expand-button {
       margin-bottom: $paragraph-margin-bottom;
+    }
+    > :not(a) {
+      @media print {
+        display: initial !important;
+      }
     }
   }
 }
@@ -148,6 +175,9 @@ header {
 
 .filters {
   margin-bottom: 1rem;
+  @media print {
+    display: none;
+  }
 }
 
 .project {
@@ -162,6 +192,11 @@ header {
       height: 16px;
       width: 16px;
     }
+    @media print {
+
+      // The default style has URLs in parentheses after links. We don't want that here as the link text is the URL.
+      a[href]:after { content: none; }
+    }
   }
   h4 {
     font-size: $h6-font-size; // Let's maintain proper header hierarchy
@@ -169,6 +204,9 @@ header {
   }
   .label {
     margin-bottom: 0; // Not sure Zurb intended this to be necessary, see https://github.com/zurb/foundation/commit/f60c23f826a4bd38944314c0f586bf9863847200#commitcomment-6161150
+    @media print {
+      background-color: $secondary-color !important;
+    }
   }
   .tags {
     .label {
@@ -220,7 +258,7 @@ header {
       .languages {
         display: inline-block;
         vertical-align: top;
-        @media #{$small-only} {
+        @media #{$small-only}, print {
           margin-left: 0;
           margin-bottom: $paragraph-margin-bottom;
         }
@@ -231,4 +269,16 @@ header {
 
 footer a {
   display: block;
+  @media print {
+    display: none;
+  }
+}
+
+@media print {
+  a {
+    text-decoration: none;
+  }
+  @page {
+    margin: 0.75in;
+  }
 }

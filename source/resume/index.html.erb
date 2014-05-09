@@ -3,7 +3,7 @@ title: Simon Engelhardt
 subtitle: Résumé
 ---
 
-<div data-magellan-expedition="fixed" data-options="destination_threshold:60;">
+<div data-magellan-expedition="fixed" data-options="destination_threshold:60;" class="hide-for-print">
   <dl class="sub-nav">
     <dd data-magellan-arrival="experience">
       <a href="#experience">
@@ -38,7 +38,7 @@ subtitle: Résumé
       <li ng-repeat="experience in primaryExperiences" class="experience" ng-include="'/resume/partials/experience.html'">
       </li>
     </ul>
-    <div class="extended-content" ng-class="{'collapsed': !secondaryExperiencesVisible}">
+    <div class="extended-content hide-for-print" ng-class="{'collapsed': !secondaryExperiencesVisible}">
       <a ng-click="secondaryExperiencesVisible = !secondaryExperiencesVisible" trigger-scroll-onclick class="expand-button">
         <i class="fa" ng-class="{'fa-angle-right': !secondaryExperiencesVisible, 'fa-angle-down': secondaryExperiencesVisible}"></i>
         Secondary (earlier and part-time) work experience

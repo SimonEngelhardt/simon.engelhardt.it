@@ -10,7 +10,7 @@
       <% end %>
     </title>
 
-    <%= stylesheet_link_tag "app", "bower_components/foundation-icon-fonts/foundation-icons" %>
+    <%= stylesheet_link_tag "app", "bower_components/foundation-icon-fonts/foundation-icons", media: "all" %>
     <%= javascript_include_tag "modernizr" %>
 
     <%= yield_content :head %>
@@ -34,7 +34,8 @@
               <small><%= data.page.subtitle %></small>
             <% end %>
           </h1>
-          <ul class="inline-list social">
+          <ul class="social">
+            <li class="print-only"><a href="http://simon.engelhardt.io" target="_blank" class="fi-web"></a></li>
             <li>
               <span class="hide-for-touch">
                 <script src="//platform.linkedin.com/in.js" type="text/javascript"></script>
@@ -46,11 +47,11 @@
               </span>
             </li>
             <li><a href="https://github.com/simonengelhardt" target="_blank" class="fi-social-github" title="Code on GitHub"></a></li>
-            <li><a href="https://twitter.com/simonengelhardt" target="_blank" class="fi-social-twitter" title="Twitter"></a></li>
-            <li><a href="https://www.facebook.com/simon.engelhardt" target="_blank" class="fi-social-facebook" title="Facebook"></a></li>
-            <li><a href="https://foursquare.com/simonengelhardt" target="_blank" class="fi-social-foursquare" title="Foursquare"></a></li>
-            <li><a href="http://www.last.fm/user/simonengelhardt" target="_blank" class="fi-social-lastfm" title="Music on Last.fm"></a></li>
-            <li><a href="http://www.openstreetmap.org/user/Simon%20Engelhardt" target="_blank" class="fi-map" title="Mapping on OpenStreetMap"></a></li>
+            <li class="hide-for-print"><a href="https://twitter.com/simonengelhardt" target="_blank" class="fi-social-twitter" title="Twitter"></a></li>
+            <li class="hide-for-print"><a href="https://www.facebook.com/simon.engelhardt" target="_blank" class="fi-social-facebook" title="Facebook"></a></li>
+            <li class="hide-for-print"><a href="https://foursquare.com/simonengelhardt" target="_blank" class="fi-social-foursquare" title="Foursquare"></a></li>
+            <li class="hide-for-print"><a href="http://www.last.fm/user/simonengelhardt" target="_blank" class="fi-social-lastfm" title="Music on Last.fm"></a></li>
+            <li class="hide-for-print"><a href="http://www.openstreetmap.org/user/Simon%20Engelhardt" target="_blank" class="fi-map" title="Mapping on OpenStreetMap"></a></li>
           </ul>
         </header>
         <%= yield %>
