@@ -93,7 +93,7 @@ subtitle: Résumé
           </a>
         </small>
         <div class="timeline" ng-show="project.years">
-          <span ng-repeat="year in allYears" class="year" ng-style="{width: 100/allYears.length + '%'}" ng-class="{active: project.years.indexOf(year) !== -1, first: project.years.indexOf(year) === 0, last: project.years.indexOf(year) === experience.years.length - 1}">{{year}}</span>
+          <span ng-repeat="year in allYears" class="year" ng-style="{width: 100/allYears.length + '%'}" ng-class="{active: project.years.indexOf(year) !== -1, first: project.years.indexOf(year) === 0, last: project.years.indexOf(year) === project.years.length - 1}">{{year}}</span>
         </div>
         <p>{{project.description}}</p>
         <div ng-if="project.extendeddescription" class="extended-content" ng-class="{'collapsed': !project.extendedDescriptionVisible}">
