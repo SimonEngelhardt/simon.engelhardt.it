@@ -18,7 +18,7 @@ var resumeApp = angular.module('resumeApp', [])
     allYears: []
   })
   .config(['constants', function(constants) {
-    for(var i = 1995; i <= moment().year(); i++) { // FIXME: Ideally, the initial year would be calculated dynamically from experiences, educations and projects
+    for(var i = 2001; i <= moment().year(); i++) { // FIXME: Ideally, the initial year would be calculated dynamically from experiences, educations and projects
       constants.allYears.push(i.toString());
     }
   }]);
@@ -44,9 +44,11 @@ resumeApp.controller('ExperienceCtrl', ['$scope', 'sheets', 'scroll', 'constants
       }
       if (experience.start && experience.end) {
         experience.duration = moment.duration(experience.end - experience.start);
-        experience.years = [];
-        for (var i = experience.start.year(); i <= experience.end.year(); i++) {
-          experience.years.push(i.toString());
+        if (!experience.secondary) {
+          experience.years = [];
+          for (var i = experience.start.year(); i <= experience.end.year(); i++) {
+            experience.years.push(i.toString());
+          }
         }
       }
       if (experience.secondary) {
@@ -74,7 +76,7 @@ resumeApp.controller('EducationCtrl', ['$scope', 'sheets', 'scroll', 'constants'
     angular.forEach(educations, function(education) {
       if (education.start) education.start = moment(education.start, dateFormat);
       if (education.end) education.end = moment(education.end, dateFormat);
-      if (education.start && education.end) {
+      if (education.start && education.end && !education.secondary) {
         education.years = [];
         for (var i = education.start.year(); i <= education.end.year(); i++) {
           education.years.push(i.toString());
