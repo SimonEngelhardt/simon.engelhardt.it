@@ -242,7 +242,7 @@ header {
 }
 
 #additional-info {
-  @media #{$medium-up} {
+  @media #{$medium-up}, print {
     ul {
       @include inline-list;
     }
@@ -259,7 +259,7 @@ header {
       .languages {
         display: inline-block;
         vertical-align: top;
-        @media #{$small-only}, print {
+        @media #{$small-only} {
           margin-left: 0;
           margin-bottom: $paragraph-margin-bottom;
         }
