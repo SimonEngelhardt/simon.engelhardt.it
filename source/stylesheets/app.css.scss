@@ -241,7 +241,7 @@ header {
   margin-bottom: 0.5em;
 }
 
-#additional-info {
+#info {
   @media #{$medium-up}, print {
     ul {
       @include inline-list;

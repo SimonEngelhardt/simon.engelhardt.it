@@ -21,6 +21,14 @@ subtitle: Résumé
         <span class="meter"></span>
       </div>
     </dd>
+    <dd data-magellan-arrival="info" class="hide-for-small-only">
+      <a href="#info">
+        Info
+      </a>
+      <div class="progress" dir="rtl">
+        <span class="meter"></span>
+      </div>
+    </dd>
     <dd data-magellan-arrival="projects">
       <a href="#projects">
         Selected projects
@@ -72,6 +80,33 @@ subtitle: Résumé
             {{education.thesisdescription}}
           </p>
         </div>
+      </li>
+    </ul>
+  </div>
+  <div id="info" ng-controller="InfoCtrl" class="section" data-magellan-destination="info" scroll-progress-meter='[data-magellan-arrival="info"] .progress .meter'>
+    <h2>Info</h2>
+    <ul class="no-bullet">
+      <li class="fi-marker" title="Location">
+        New York City
+      </li>
+      <li class="fi-power" title="Birthday">
+        {{birthdate.toDate() | date}} (age {{age}})
+      </li>
+      <li class="fi-male-female" title="Maritial Status">
+        Married
+      </li>
+      <li class="fi-flag" title="Languages">
+        <ul class="languages no-bullet">
+          <li>
+            English, Danish <small>Native or bilingual proficiency</small>
+          </li>
+          <li>
+            German <small>Limited working proficiency</small>
+          </li>
+          <li>
+            French, Spanish <small>Elementary proficiency</small>
+          </li>
+        </ul>
       </li>
     </ul>
   </div>
@@ -130,32 +165,5 @@ subtitle: Résumé
       </div>
       <a href="/resume/skills?highlight={{selectedSkill.name}}#{{removeWhiteSpace(selectedSkill.category)}}" target="_self">Show all skills</a>
     </div>
-  </div>
-  <div id="additional-info" ng-controller="InfoCtrl" class="section">
-    <h2>Additional Info</h2>
-    <ul class="no-bullet">
-      <li class="fi-marker" title="Location">
-        New York City
-      </li>
-      <li class="fi-power" title="Birthday">
-        {{birthdate.toDate() | date}} (age {{age}})
-      </li>
-      <li class="fi-male-female" title="Maritial Status">
-        Married
-      </li>
-      <li class="fi-flag" title="Languages">
-        <ul class="languages no-bullet">
-          <li>
-            English, Danish <small>Native or bilingual proficiency</small>
-          </li>
-          <li>
-            German <small>Limited working proficiency</small>
-          </li>
-          <li>
-            French, Spanish <small>Elementary proficiency</small>
-          </li>
-        </ul>
-      </li>
-    </ul>
   </div>
 </div>
