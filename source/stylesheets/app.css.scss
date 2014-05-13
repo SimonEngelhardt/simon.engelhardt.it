@@ -25,6 +25,7 @@ header {
   .social {
     @media screen {
       @include inline-list;
+      margin-bottom: 0;
       display: inline-block;
 
       // Match responsive h3 font size for social icons
