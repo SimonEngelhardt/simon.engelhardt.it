@@ -1,9 +1,9 @@
 @import "settings";
 @import "foundation.scss";
+@import "fa-angles.css";
+@import "/bower_components/odometer/themes/odometer-theme-default.css";
 
 header {
-  @include grid-row;
-
   margin-top: $column-gutter/2;
 
   h1 {
@@ -23,14 +23,34 @@ header {
   }
 
   .social {
-    display: inline-block;
+    @media screen {
+      @include inline-list;
+      margin-bottom: 0;
+      display: inline-block;
 
-    // Match responsive h3 font size for social icons
-    font-size: $h3-font-size - rem-calc(5);
-    @media #{$medium-up} {
-      font-size: $h3-font-size;
+      // Match responsive h3 font size for social icons
+      font-size: $h3-font-size - rem-calc(5);
+      @media #{$medium-up} {
+        font-size: $h3-font-size;
+      }
     }
-    
+    @media print {
+      list-style-type: none;
+
+      font-size: $small-font-size;
+
+      // The default style has URLs in parentheses. We don't want that here.
+      a[href]:after { content: " " attr(href); }
+
+      // We'll have to use the touch media queries for hiding the LinkedIn plugin as unfortunately they can't be combined with the print queries (such as hide-for-print)
+      .hide-for-touch {
+        display: none !important;
+      }
+      .show-for-touch {
+        display: initial !important;
+      }
+    }
+
     // Override LinkedIn plugin icon style (see also JS)
     .li-connect-widget .li-connect-mark {
       background: none !important;
@@ -42,7 +62,7 @@ header {
     .li-connect-widget.pending .li-connect-mark {
       background: image-url("loader.gif") 0 50% / auto 8px no-repeat !important;
     }
-    
+
     // Make sure LinkedIn plugin iframe only shows when hovering over icon or widget (required click to close otherwise)
     .IN-widget iframe {
       display: none !important;
@@ -50,5 +70,216 @@ header {
     .IN-widget:hover iframe {
       display: block !important;
     }
+  }
+}
+
+.sub-nav {
+  margin-left: 0;
+
+  dt {
+    line-height: 1.8em;
+    margin-bottom: 0;
+  }
+
+  dd {
+    margin-left: 0;
+    margin-right: $sub-nav-item-divider-margin;
+  }
+
+  dd.active a {
+    @include radius(0);
+  }
+
+  .progress {
+    height: rem-calc(3);
+    border-width: 0;
+    padding: rem-calc(0);
+    margin-bottom: rem-calc(0);
+  }
+}
+
+.section {
+  margin-bottom: rem-calc(30);
+  border-bottom: $hr-border-width $hr-border-style $hr-border-color;
+  h2 {
+    margin-bottom: 0.75rem;
+  }
+}
+
+.experience, .education, .project {
+  margin-bottom: 1.5 * $paragraph-margin-bottom;
+  h3 {
+    line-height: 1.1;
+  }
+  .details {
+    color: scale-color($body-font-color, $lightness: 35%);
+    font-size: 80%;
+  }
+}
+
+.expand-button {
+  display: block;
+  @media print {
+    display: none;
+  }
+}
+
+.extended-content {
+  &.collapsed {
+    .expand-button {
+      margin-bottom: $paragraph-margin-bottom;
+    }
+    > :not(a) {
+      @media print {
+        display: initial !important;
+      }
+    }
+  }
+}
+
+.experiences > .extended-content {
+  &.collapsed {
+    .expand-button {
+      margin-bottom: 1.5 * $paragraph-margin-bottom;
+    }
+  }
+  .expand-button {
+    margin-bottom: 0.5 * $paragraph-margin-bottom;
+  }
+}
+
+.timeline {
+  .year {
+    display: inline-block;
+    text-align: center;
+    font-size: 50%;
+    border-top: rem-calc(5) solid #eee;
+    text-indent: -9999px;
+    &.active {
+      border-top-color: $primary-color;
+      text-indent: initial;
+      @media #{$small-only} {
+        text-indent: -9999px;
+        &.first, &.last {
+          text-indent: initial;
+        }
+        &.first {
+          text-align: left;
+        }
+        &.last {
+          text-align: right;
+        }
+      }
+    }
+  }
+}
+
+.filters {
+  margin-bottom: 1rem;
+  @media print {
+    display: none;
+  }
+}
+
+.project {
+  margin-bottom: 2 * $paragraph-margin-bottom;
+  .timeline {
+    margin-bottom: 0.25rem;
+  }
+  .url {
+    display: block;
+    margin-bottom: $paragraph-margin-bottom/2;
+    img {
+      height: 16px;
+      width: 16px;
+    }
+    @media print {
+
+      // The default style has URLs in parentheses after links. We don't want that here as the link text is the URL.
+      a[href]:after { content: none; }
+    }
+  }
+  h4 {
+    font-size: $h6-font-size; // Let's maintain proper header hierarchy
+    margin-bottom: 0;
+  }
+  .label {
+    margin-bottom: 0; // Not sure Zurb intended this to be necessary, see https://github.com/zurb/foundation/commit/f60c23f826a4bd38944314c0f586bf9863847200#commitcomment-6161150
+    @media print {
+      background-color: $secondary-color !important;
+    }
+  }
+  .tags {
+    .label {
+      margin-right: 0.5em;
+    }
+  }
+}
+
+.skill {
+  .meter {
+    width: 0%;
+    @include single-transition(width, 1s);
+  }
+  &.f-dropdown {
+    strong {
+      display: block;
+      margin-bottom: $paragraph-margin-bottom/2;
+      small {
+        font-weight: normal;
+        display: block;
+      }
+    }
+  }
+  &.highlight {
+    font-weight: bold;
+  }
+}
+
+.skills .back {
+  display: block;
+  margin-bottom: 0.5em;
+}
+
+#info {
+  @media #{$medium-up}, print {
+    ul {
+      @include inline-list;
+    }
+  }
+  & > ul {
+    & > li {
+      margin-bottom: 0.75rem;
+      &:before {
+        width: 1em;
+        @media #{$small-only} {
+          width: 1.25em;
+        }
+      }
+      .languages {
+        display: inline-block;
+        vertical-align: top;
+        @media #{$small-only} {
+          margin-left: 0;
+          margin-bottom: $paragraph-margin-bottom;
+        }
+      }
+    }
+  }
+}
+
+footer a {
+  display: block;
+  @media print {
+    display: none;
+  }
+}
+
+@media print {
+  a {
+    text-decoration: none;
+  }
+  @page {
+    margin: 0.75in;
   }
 }
