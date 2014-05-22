@@ -38,9 +38,13 @@ header {
       list-style-type: none;
 
       font-size: $small-font-size;
+      line-height: 150%;
 
       // The default style has URLs in parentheses. We don't want that here.
       a[href]:after { content: " " attr(href); }
+
+      // The default print style for links displays the href and we don't want mailto: in the print for email adresses, so we'll use the title attribute instead.
+      a[href^="mailto"]:after { content: " " attr(title); }
 
       // We'll have to use the touch media queries for hiding the LinkedIn plugin as unfortunately they can't be combined with the print queries (such as hide-for-print)
       .hide-for-touch {
