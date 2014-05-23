@@ -8,7 +8,7 @@ if (typeof(IN) !== 'undefined') {
   });
 }
 
-var resumeApp = angular.module('resumeApp', [])
+var resumeApp = angular.module('resumeApp', ['ngSanitize'])
   .config(function($locationProvider) {
     $locationProvider.html5Mode(true);
   })

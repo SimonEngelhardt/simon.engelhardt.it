@@ -130,13 +130,13 @@ subtitle: Résumé
         <div class="timeline" ng-show="project.years">
           <span ng-repeat="year in allYears" class="year" ng-style="{width: 100/allYears.length + '%'}" ng-class="{active: project.years.indexOf(year) !== -1, first: project.years.indexOf(year) === 0, last: project.years.indexOf(year) === project.years.length - 1}">{{year}}</span>
         </div>
-        <p>{{project.description}}</p>
+        <p ng-bind-html="project.description"></p>
         <div ng-if="project.extendeddescription" class="extended-content" ng-class="{'collapsed': !project.extendedDescriptionVisible}">
           <a ng-click="project.extendedDescriptionVisible = !project.extendedDescriptionVisible" trigger-scroll-onclick class="expand-button">
             <i class="fa" ng-class="{'fa-angle-right': !project.extendedDescriptionVisible, 'fa-angle-down': project.extendedDescriptionVisible}"></i>
             Further description
           </a>
-          <p ng-show="project.extendedDescriptionVisible">{{project.extendeddescription}}</p>
+          <p ng-show="project.extendedDescriptionVisible" ng-bind-html="project.extendeddescription"></p>
         </div>
         <h4>My Roles</h4>
         <p class="tags">
