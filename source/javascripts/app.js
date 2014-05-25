@@ -8,7 +8,7 @@ if (typeof(IN) !== 'undefined') {
   });
 }
 
-var resumeApp = angular.module('resumeApp', ['ngSanitize'])
+var resumeApp = angular.module('resumeApp', ['ngSanitize', 'simonengelhardt.scroll-progress-meter'])
   .config(function($locationProvider) {
     $locationProvider.html5Mode(true);
   })
@@ -234,33 +234,6 @@ resumeApp.factory('util', [function() {
     removeWhiteSpace: function(str) {
       return angular.isString(str) ? str.replace(/\s/g, '') : str;
     }
-  }
-}]);
-
-// Scroll progress meter directive - requires jQuery
-resumeApp.directive('scrollProgressMeter', ['$window', '$timeout', function($window, $timeout) {
-  return function(scope, element, attr) {
-    var meter = angular.element(attr.scrollProgressMeter);
-
-    var throttledScrollHandler = _.throttle(function() {
-      var top = element.offset().top;
-      var bottom = top + element.outerHeight();
-
-      // Account for height of meter element's offset parent if it is currently in a fixed position (used when meter is in a fixed navigation bar, for example)
-      var scrollTop = angular.element($window).scrollTop();
-      var meterOffsetParent = meter.offsetParent();
-      if (meterOffsetParent.css('position') === 'fixed') {
-        scrollTop = scrollTop + meterOffsetParent.outerHeight();
-      }
-
-      var progress = ((bottom - scrollTop)/(bottom - top)) * 100;
-      if (progress > 100) progress = 100;
-      else if (progress < 0) progress = 0;
-
-      meter.css('width', progress + '%');
-    }, 30); // throttle to approx 30 FPS
-
-    angular.element($window).on('scroll resize', throttledScrollHandler);
   }
 }]);
 

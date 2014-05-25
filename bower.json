@@ -10,6 +10,7 @@
     "odometer": "~0.4.6",
     "lodash": "~2.4.1",
     "jquery": "~2.1.0",
-    "angular-sanitize": "~1.2.16"
+    "angular-sanitize": "~1.2.16",
+    "angular-scroll-progress-meter": "simonengelhardt/angular-scroll-progress-meter"
   }
 }

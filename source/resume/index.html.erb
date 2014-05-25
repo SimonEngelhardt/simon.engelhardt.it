@@ -40,7 +40,7 @@ subtitle: Résumé
   </dl>
 </div>
 <div ng-app="resumeApp" ng-cloak>
-  <div id="experience" ng-controller="ExperienceCtrl" class="section experiences" data-magellan-destination="experience" scroll-progress-meter='[data-magellan-arrival="experience"] .progress .meter'>
+  <div id="experience" ng-controller="ExperienceCtrl" class="section experiences" data-magellan-destination="experience" se-scroll-progress-meter='[data-magellan-arrival="experience"] .progress .meter'>
     <h2>Experience</h2>
     <ul class="no-bullet">
       <li ng-repeat="experience in primaryExperiences" class="experience" ng-include="'/resume/partials/experience.html'">
@@ -57,7 +57,7 @@ subtitle: Résumé
       </ul>
     </div>
   </div>
-  <div id="education" ng-controller="EducationCtrl" class="section" data-magellan-destination="education" scroll-progress-meter='[data-magellan-arrival="education"] .progress .meter'>
+  <div id="education" ng-controller="EducationCtrl" class="section" data-magellan-destination="education" se-scroll-progress-meter='[data-magellan-arrival="education"] .progress .meter'>
     <h2>Education</h2>
     <ul class="no-bullet">
       <li ng-repeat="education in educations" class="education">
@@ -83,7 +83,7 @@ subtitle: Résumé
       </li>
     </ul>
   </div>
-  <div id="info" ng-controller="InfoCtrl" class="section" data-magellan-destination="info" scroll-progress-meter='[data-magellan-arrival="info"] .progress .meter'>
+  <div id="info" ng-controller="InfoCtrl" class="section" data-magellan-destination="info" se-scroll-progress-meter='[data-magellan-arrival="info"] .progress .meter'>
     <h2>Info</h2>
     <ul class="no-bullet">
       <li class="fi-marker" title="Location">
@@ -110,7 +110,7 @@ subtitle: Résumé
       </li>
     </ul>
   </div>
-  <div id="projects" ng-controller="ProjectsCtrl" class="section" data-magellan-destination="projects" scroll-progress-meter='[data-magellan-arrival="projects"] .progress .meter'>
+  <div id="projects" ng-controller="ProjectsCtrl" class="section" data-magellan-destination="projects" se-scroll-progress-meter='[data-magellan-arrival="projects"] .progress .meter'>
     <h2>Selected projects</h2>
     <form class="filters">
       <label>
