@@ -4,7 +4,7 @@
 @import "/bower_components/odometer/themes/odometer-theme-default.css";
 
 header {
-  margin-top: $column-gutter/2;
+  margin: $column-gutter/2 0;
 
   h1 {
     line-height: 95%;
@@ -111,7 +111,7 @@ header {
 }
 
 .experience, .education, .project {
-  margin-bottom: 1.5 * $paragraph-margin-bottom;
+  margin-bottom: 2 * $paragraph-margin-bottom;
   h3 {
     line-height: 1.1;
   }
