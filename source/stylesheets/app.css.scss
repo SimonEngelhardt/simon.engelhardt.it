@@ -119,6 +119,9 @@ header {
     color: scale-color($body-font-color, $lightness: 35%);
     font-size: 80%;
   }
+  @media print {
+    page-break-inside: avoid;
+  }
 }
 
 .expand-button {
@@ -182,6 +185,12 @@ header {
   margin-bottom: 1rem;
   @media print {
     display: none;
+  }
+}
+
+#projects {
+  @media print {
+    page-break-before: always;
   }
 }
 
@@ -288,5 +297,10 @@ footer a {
   }
   @page {
     margin: 0.75in;
+  }
+
+  // Printing page breaks do not work properly in Chrome for floated elements (see http://stackoverflow.com/a/5314590) and Foundation's small-centered only set float: none; for the screen media
+  .columns.small-centered {
+    float: none;
   }
 }
