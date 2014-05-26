@@ -136,9 +136,9 @@ header {
     .expand-button {
       margin-bottom: $paragraph-margin-bottom;
     }
-    > :not(a) {
+    > p {
       @media print {
-        display: initial !important;
+        display: block !important;
       }
     }
   }
