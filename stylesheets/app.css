@@ -6634,8 +6634,8 @@ header {
   margin-bottom: 1.25rem; }
 @media print {
   /* line 139, /Users/simon/Development/Projects/simon.engelhardt.io/source/stylesheets/app.css.scss */
-  .extended-content.collapsed > :not(a) {
-    display: initial !important; } }
+  .extended-content.collapsed > p {
+    display: block !important; } }
 
 /* line 149, /Users/simon/Development/Projects/simon.engelhardt.io/source/stylesheets/app.css.scss */
 .experiences > .extended-content.collapsed .expand-button {
