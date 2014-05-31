@@ -6778,21 +6778,24 @@ header {
         margin-bottom: 1.25rem; } }
 
 /* line 287, /Users/simon/Development/Projects/simon.engelhardt.io/source/stylesheets/app.css.scss */
-footer a {
-  display: block; }
+footer {
+  text-align: center; }
+  /* line 289, /Users/simon/Development/Projects/simon.engelhardt.io/source/stylesheets/app.css.scss */
+  footer a[href="#top"] {
+    display: block; }
   @media print {
     /* line 287, /Users/simon/Development/Projects/simon.engelhardt.io/source/stylesheets/app.css.scss */
-    footer a {
+    footer {
       display: none; } }
 
 @media print {
-  /* line 295, /Users/simon/Development/Projects/simon.engelhardt.io/source/stylesheets/app.css.scss */
+  /* line 298, /Users/simon/Development/Projects/simon.engelhardt.io/source/stylesheets/app.css.scss */
   a {
     text-decoration: none; }
 
   @page {
     margin: 0.75in; }
 
-  /* line 303, /Users/simon/Development/Projects/simon.engelhardt.io/source/stylesheets/app.css.scss */
+  /* line 306, /Users/simon/Development/Projects/simon.engelhardt.io/source/stylesheets/app.css.scss */
   .columns.small-centered {
     float: none; } }
