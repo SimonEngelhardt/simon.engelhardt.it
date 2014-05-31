@@ -57,7 +57,8 @@
         </header>
         <%= yield %>
         <footer>
-          <p class="text-center">
+          <%= yield_content :footer %>
+          <p>
             <a href="#top" title="Back to top"><i class="fa fa-angle-up"></i></a>
           </p>
         </footer>
