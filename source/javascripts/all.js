@@ -6,6 +6,7 @@
 //= require foundation/js/foundation.min
 //= require momentjs/min/moment.min
 //= require odometer/odometer.min
+//= require angular-loading-bar/build/loading-bar.min
 
 //= require app
 //= require script

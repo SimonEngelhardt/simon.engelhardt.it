@@ -2,6 +2,19 @@
 @import "foundation.scss";
 @import "fa-angles.css";
 @import "/bower_components/odometer/themes/odometer-theme-default.css";
+@import "/bower_components/angular-loading-bar/build/loading-bar.min.css";
+
+// Override angular-loading-bar color
+#loading-bar .bar {
+  background: $primary-color;
+}
+#loading-bar .peg {
+  box-shadow: $primary-color 1px 0 6px 1px;
+}
+#loading-bar-spinner .spinner-icon {
+  border-top-color:  $primary-color;
+  border-left-color: $primary-color;
+}
 
 header {
   margin: $column-gutter/2 0;

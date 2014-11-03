@@ -8,7 +8,7 @@ if (typeof(IN) !== 'undefined') {
   });
 }
 
-var resumeApp = angular.module('resumeApp', ['ngSanitize', 'simonengelhardt.scroll-progress-meter'])
+var resumeApp = angular.module('resumeApp', ['ngSanitize', 'simonengelhardt.scroll-progress-meter', 'angular-loading-bar'])
   .config(function($locationProvider) {
     $locationProvider.html5Mode(true);
   })
@@ -21,6 +21,9 @@ var resumeApp = angular.module('resumeApp', ['ngSanitize', 'simonengelhardt.scro
     for(var i = 2001; i <= moment().year(); i++) { // FIXME: Ideally, the initial year would be calculated dynamically from experiences, educations and projects
       constants.allYears.push(i.toString());
     }
+  }])
+  .config(['cfpLoadingBarProvider', function(cfpLoadingBarProvider) {
+    cfpLoadingBarProvider.includeSpinner = false;
   }]);
 
 resumeApp.controller('ExperienceCtrl', ['$scope', 'sheets', 'scroll', 'constants', function ($scope, sheets, scroll, constants) {
