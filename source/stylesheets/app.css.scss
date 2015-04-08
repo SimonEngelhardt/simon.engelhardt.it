@@ -117,6 +117,9 @@ header {
 
 .section {
   margin-bottom: rem-calc(30);
+  @media print {
+    margin-bottom: rem-calc(25);
+  }
   border-bottom: $hr-border-width $hr-border-style $hr-border-color;
   h2 {
     margin-bottom: 0.75rem;
