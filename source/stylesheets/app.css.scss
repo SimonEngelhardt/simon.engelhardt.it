@@ -285,9 +285,11 @@ header {
           width: 1.25em;
         }
       }
-      .languages {
+      .location, .languages {
         display: inline-block;
         vertical-align: top;
+      }
+      .languages {
         @media #{$small-only} {
           margin-left: 0;
           margin-bottom: $paragraph-margin-bottom;
