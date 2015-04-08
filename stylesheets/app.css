@@ -6616,145 +6616,149 @@ header {
 .section {
   margin-bottom: 1.875rem;
   border-bottom: 1px solid #dddddd; }
-  /* line 121, /Users/simon/Development/Projects/simon.engelhardt.io/source/stylesheets/app.css.scss */
+  @media print {
+    /* line 118, /Users/simon/Development/Projects/simon.engelhardt.io/source/stylesheets/app.css.scss */
+    .section {
+      margin-bottom: 1.5625rem; } }
+  /* line 124, /Users/simon/Development/Projects/simon.engelhardt.io/source/stylesheets/app.css.scss */
   .section h2 {
     margin-bottom: 0.75rem; }
 
-/* line 126, /Users/simon/Development/Projects/simon.engelhardt.io/source/stylesheets/app.css.scss */
+/* line 129, /Users/simon/Development/Projects/simon.engelhardt.io/source/stylesheets/app.css.scss */
 .experience, .education, .project {
   margin-bottom: 2.5rem; }
-  /* line 128, /Users/simon/Development/Projects/simon.engelhardt.io/source/stylesheets/app.css.scss */
+  /* line 131, /Users/simon/Development/Projects/simon.engelhardt.io/source/stylesheets/app.css.scss */
   .experience h3, .education h3, .project h3 {
     line-height: 1.1; }
-  /* line 131, /Users/simon/Development/Projects/simon.engelhardt.io/source/stylesheets/app.css.scss */
+  /* line 134, /Users/simon/Development/Projects/simon.engelhardt.io/source/stylesheets/app.css.scss */
   .experience .details, .education .details, .project .details {
     color: #6f6f6f;
     font-size: 80%; }
   @media print {
-    /* line 126, /Users/simon/Development/Projects/simon.engelhardt.io/source/stylesheets/app.css.scss */
+    /* line 129, /Users/simon/Development/Projects/simon.engelhardt.io/source/stylesheets/app.css.scss */
     .experience, .education, .project {
       page-break-inside: avoid; } }
 
-/* line 140, /Users/simon/Development/Projects/simon.engelhardt.io/source/stylesheets/app.css.scss */
+/* line 143, /Users/simon/Development/Projects/simon.engelhardt.io/source/stylesheets/app.css.scss */
 .expand-button {
   display: block; }
   @media print {
-    /* line 140, /Users/simon/Development/Projects/simon.engelhardt.io/source/stylesheets/app.css.scss */
+    /* line 143, /Users/simon/Development/Projects/simon.engelhardt.io/source/stylesheets/app.css.scss */
     .expand-button {
       display: none; } }
 
-/* line 149, /Users/simon/Development/Projects/simon.engelhardt.io/source/stylesheets/app.css.scss */
+/* line 152, /Users/simon/Development/Projects/simon.engelhardt.io/source/stylesheets/app.css.scss */
 .extended-content.collapsed .expand-button {
   margin-bottom: 1.25rem; }
 @media print {
-  /* line 152, /Users/simon/Development/Projects/simon.engelhardt.io/source/stylesheets/app.css.scss */
+  /* line 155, /Users/simon/Development/Projects/simon.engelhardt.io/source/stylesheets/app.css.scss */
   .extended-content.collapsed > p {
     display: block !important; } }
 
-/* line 162, /Users/simon/Development/Projects/simon.engelhardt.io/source/stylesheets/app.css.scss */
+/* line 165, /Users/simon/Development/Projects/simon.engelhardt.io/source/stylesheets/app.css.scss */
 .experiences > .extended-content.collapsed .expand-button {
   margin-bottom: 1.875rem; }
-/* line 166, /Users/simon/Development/Projects/simon.engelhardt.io/source/stylesheets/app.css.scss */
+/* line 169, /Users/simon/Development/Projects/simon.engelhardt.io/source/stylesheets/app.css.scss */
 .experiences > .extended-content .expand-button {
   margin-bottom: 0.625rem; }
 
-/* line 172, /Users/simon/Development/Projects/simon.engelhardt.io/source/stylesheets/app.css.scss */
+/* line 175, /Users/simon/Development/Projects/simon.engelhardt.io/source/stylesheets/app.css.scss */
 .timeline .year {
   display: inline-block;
   text-align: center;
   font-size: 50%;
   border-top: 0.3125rem solid #eeeeee;
   text-indent: -9999px; }
-  /* line 178, /Users/simon/Development/Projects/simon.engelhardt.io/source/stylesheets/app.css.scss */
+  /* line 181, /Users/simon/Development/Projects/simon.engelhardt.io/source/stylesheets/app.css.scss */
   .timeline .year.active {
     border-top-color: #5188a9;
     text-indent: initial; }
     @media only screen and (max-width: 40em) {
-      /* line 178, /Users/simon/Development/Projects/simon.engelhardt.io/source/stylesheets/app.css.scss */
+      /* line 181, /Users/simon/Development/Projects/simon.engelhardt.io/source/stylesheets/app.css.scss */
       .timeline .year.active {
         text-indent: -9999px; }
-        /* line 183, /Users/simon/Development/Projects/simon.engelhardt.io/source/stylesheets/app.css.scss */
+        /* line 186, /Users/simon/Development/Projects/simon.engelhardt.io/source/stylesheets/app.css.scss */
         .timeline .year.active.first, .timeline .year.active.last {
           text-indent: initial; }
-        /* line 186, /Users/simon/Development/Projects/simon.engelhardt.io/source/stylesheets/app.css.scss */
+        /* line 189, /Users/simon/Development/Projects/simon.engelhardt.io/source/stylesheets/app.css.scss */
         .timeline .year.active.first {
           text-align: left; }
-        /* line 189, /Users/simon/Development/Projects/simon.engelhardt.io/source/stylesheets/app.css.scss */
+        /* line 192, /Users/simon/Development/Projects/simon.engelhardt.io/source/stylesheets/app.css.scss */
         .timeline .year.active.last {
           text-align: right; } }
 
-/* line 197, /Users/simon/Development/Projects/simon.engelhardt.io/source/stylesheets/app.css.scss */
+/* line 200, /Users/simon/Development/Projects/simon.engelhardt.io/source/stylesheets/app.css.scss */
 .filters {
   margin-bottom: 1rem; }
   @media print {
-    /* line 197, /Users/simon/Development/Projects/simon.engelhardt.io/source/stylesheets/app.css.scss */
+    /* line 200, /Users/simon/Development/Projects/simon.engelhardt.io/source/stylesheets/app.css.scss */
     .filters {
       display: none; } }
 
 @media print {
-  /* line 204, /Users/simon/Development/Projects/simon.engelhardt.io/source/stylesheets/app.css.scss */
+  /* line 207, /Users/simon/Development/Projects/simon.engelhardt.io/source/stylesheets/app.css.scss */
   #projects {
     page-break-before: always; } }
 
-/* line 210, /Users/simon/Development/Projects/simon.engelhardt.io/source/stylesheets/app.css.scss */
+/* line 213, /Users/simon/Development/Projects/simon.engelhardt.io/source/stylesheets/app.css.scss */
 .project {
   margin-bottom: 2.5rem; }
-  /* line 212, /Users/simon/Development/Projects/simon.engelhardt.io/source/stylesheets/app.css.scss */
+  /* line 215, /Users/simon/Development/Projects/simon.engelhardt.io/source/stylesheets/app.css.scss */
   .project .timeline {
     margin-bottom: 0.25rem; }
-  /* line 215, /Users/simon/Development/Projects/simon.engelhardt.io/source/stylesheets/app.css.scss */
+  /* line 218, /Users/simon/Development/Projects/simon.engelhardt.io/source/stylesheets/app.css.scss */
   .project .url {
     display: block;
     margin-bottom: 0.625rem;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis; }
-    /* line 221, /Users/simon/Development/Projects/simon.engelhardt.io/source/stylesheets/app.css.scss */
+    /* line 224, /Users/simon/Development/Projects/simon.engelhardt.io/source/stylesheets/app.css.scss */
     .project .url img {
       height: 16px;
       width: 16px; }
     @media print {
-      /* line 228, /Users/simon/Development/Projects/simon.engelhardt.io/source/stylesheets/app.css.scss */
+      /* line 231, /Users/simon/Development/Projects/simon.engelhardt.io/source/stylesheets/app.css.scss */
       .project .url a[href]:after {
         content: none; } }
-  /* line 231, /Users/simon/Development/Projects/simon.engelhardt.io/source/stylesheets/app.css.scss */
+  /* line 234, /Users/simon/Development/Projects/simon.engelhardt.io/source/stylesheets/app.css.scss */
   .project h4 {
     font-size: 1rem;
     margin-bottom: 0; }
-  /* line 235, /Users/simon/Development/Projects/simon.engelhardt.io/source/stylesheets/app.css.scss */
+  /* line 238, /Users/simon/Development/Projects/simon.engelhardt.io/source/stylesheets/app.css.scss */
   .project .label {
     margin-bottom: 0; }
     @media print {
-      /* line 235, /Users/simon/Development/Projects/simon.engelhardt.io/source/stylesheets/app.css.scss */
+      /* line 238, /Users/simon/Development/Projects/simon.engelhardt.io/source/stylesheets/app.css.scss */
       .project .label {
         background-color: #e7e7e7 !important; } }
-  /* line 242, /Users/simon/Development/Projects/simon.engelhardt.io/source/stylesheets/app.css.scss */
+  /* line 245, /Users/simon/Development/Projects/simon.engelhardt.io/source/stylesheets/app.css.scss */
   .project .tags .label {
     margin-right: 0.5em; }
 
-/* line 249, /Users/simon/Development/Projects/simon.engelhardt.io/source/stylesheets/app.css.scss */
+/* line 252, /Users/simon/Development/Projects/simon.engelhardt.io/source/stylesheets/app.css.scss */
 .skill .meter {
   width: 0%;
   transition: width 1s ease-out; }
-/* line 254, /Users/simon/Development/Projects/simon.engelhardt.io/source/stylesheets/app.css.scss */
+/* line 257, /Users/simon/Development/Projects/simon.engelhardt.io/source/stylesheets/app.css.scss */
 .skill.f-dropdown strong {
   display: block;
   margin-bottom: 0.625rem; }
-  /* line 257, /Users/simon/Development/Projects/simon.engelhardt.io/source/stylesheets/app.css.scss */
+  /* line 260, /Users/simon/Development/Projects/simon.engelhardt.io/source/stylesheets/app.css.scss */
   .skill.f-dropdown strong small {
     font-weight: normal;
     display: block; }
-/* line 263, /Users/simon/Development/Projects/simon.engelhardt.io/source/stylesheets/app.css.scss */
+/* line 266, /Users/simon/Development/Projects/simon.engelhardt.io/source/stylesheets/app.css.scss */
 .skill.highlight {
   font-weight: bold; }
 
-/* line 268, /Users/simon/Development/Projects/simon.engelhardt.io/source/stylesheets/app.css.scss */
+/* line 271, /Users/simon/Development/Projects/simon.engelhardt.io/source/stylesheets/app.css.scss */
 .skills .back {
   display: block;
   margin-bottom: 0.5em; }
 
 @media only screen and (min-width: 40.063em), print {
-  /* line 275, /Users/simon/Development/Projects/simon.engelhardt.io/source/stylesheets/app.css.scss */
+  /* line 278, /Users/simon/Development/Projects/simon.engelhardt.io/source/stylesheets/app.css.scss */
   #info ul {
     margin: 0 auto 1.0625rem auto;
     margin-left: -1.375rem;
@@ -6771,45 +6775,45 @@ header {
       /* line 46, /Users/simon/Development/Projects/simon.engelhardt.io/source/bower_components/foundation/scss/foundation/components/_inline-lists.scss */
       #info ul > li > * {
         display: block; } }
-/* line 280, /Users/simon/Development/Projects/simon.engelhardt.io/source/stylesheets/app.css.scss */
+/* line 283, /Users/simon/Development/Projects/simon.engelhardt.io/source/stylesheets/app.css.scss */
 #info > ul > li {
   margin-bottom: 0.75rem; }
-  /* line 282, /Users/simon/Development/Projects/simon.engelhardt.io/source/stylesheets/app.css.scss */
+  /* line 285, /Users/simon/Development/Projects/simon.engelhardt.io/source/stylesheets/app.css.scss */
   #info > ul > li:before {
     width: 1em; }
     @media only screen and (max-width: 40em) {
-      /* line 282, /Users/simon/Development/Projects/simon.engelhardt.io/source/stylesheets/app.css.scss */
+      /* line 285, /Users/simon/Development/Projects/simon.engelhardt.io/source/stylesheets/app.css.scss */
       #info > ul > li:before {
         width: 1.25em; } }
-  /* line 288, /Users/simon/Development/Projects/simon.engelhardt.io/source/stylesheets/app.css.scss */
-  #info > ul > li .languages {
+  /* line 291, /Users/simon/Development/Projects/simon.engelhardt.io/source/stylesheets/app.css.scss */
+  #info > ul > li .location, #info > ul > li .languages {
     display: inline-block;
     vertical-align: top; }
-    @media only screen and (max-width: 40em) {
-      /* line 288, /Users/simon/Development/Projects/simon.engelhardt.io/source/stylesheets/app.css.scss */
-      #info > ul > li .languages {
-        margin-left: 0;
-        margin-bottom: 1.25rem; } }
+  @media only screen and (max-width: 40em) {
+    /* line 295, /Users/simon/Development/Projects/simon.engelhardt.io/source/stylesheets/app.css.scss */
+    #info > ul > li .languages {
+      margin-left: 0;
+      margin-bottom: 1.25rem; } }
 
-/* line 300, /Users/simon/Development/Projects/simon.engelhardt.io/source/stylesheets/app.css.scss */
+/* line 305, /Users/simon/Development/Projects/simon.engelhardt.io/source/stylesheets/app.css.scss */
 footer {
   text-align: center; }
-  /* line 302, /Users/simon/Development/Projects/simon.engelhardt.io/source/stylesheets/app.css.scss */
+  /* line 307, /Users/simon/Development/Projects/simon.engelhardt.io/source/stylesheets/app.css.scss */
   footer a[href="#top"] {
     display: block; }
   @media print {
-    /* line 300, /Users/simon/Development/Projects/simon.engelhardt.io/source/stylesheets/app.css.scss */
+    /* line 305, /Users/simon/Development/Projects/simon.engelhardt.io/source/stylesheets/app.css.scss */
     footer {
       display: none; } }
 
 @media print {
-  /* line 311, /Users/simon/Development/Projects/simon.engelhardt.io/source/stylesheets/app.css.scss */
+  /* line 316, /Users/simon/Development/Projects/simon.engelhardt.io/source/stylesheets/app.css.scss */
   a {
     text-decoration: none; }
 
   @page {
     margin: 0.75in; }
 
-  /* line 319, /Users/simon/Development/Projects/simon.engelhardt.io/source/stylesheets/app.css.scss */
+  /* line 324, /Users/simon/Development/Projects/simon.engelhardt.io/source/stylesheets/app.css.scss */
   .columns.small-centered {
     float: none; } }
