@@ -16,11 +16,6 @@
     <%= yield_content :head %>
   </head>
   <body class="<%= page_classes %>">
-    <noscript>
-      <div class="alert-box alert">
-        Error: JavaScript not enabled. Content will not display correctly.
-      </div>
-    </noscript>
     <div class="row">
       <div class="small-12 medium-10 large-9 small-centered columns">
         <header class="clearfix">
@@ -61,6 +56,11 @@
         </footer>
       </div>
     </div>
+    <noscript>
+      <div class="alert-box alert">
+        Error: JavaScript not enabled. Content will not display correctly.
+      </div>
+    </noscript>
     <%= javascript_include_tag "all" %>
     <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
