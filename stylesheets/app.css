@@ -6806,14 +6806,21 @@ footer {
     footer {
       display: none; } }
 
+/* line 316, /Users/simon/Development/Projects/simon.engelhardt.io/source/stylesheets/app.css.scss */
+noscript .alert-box {
+  position: fixed;
+  bottom: 0;
+  margin-bottom: 0;
+  width: 100%; }
+
 @media print {
-  /* line 316, /Users/simon/Development/Projects/simon.engelhardt.io/source/stylesheets/app.css.scss */
+  /* line 325, /Users/simon/Development/Projects/simon.engelhardt.io/source/stylesheets/app.css.scss */
   a {
     text-decoration: none; }
 
   @page {
     margin: 0.75in; }
 
-  /* line 324, /Users/simon/Development/Projects/simon.engelhardt.io/source/stylesheets/app.css.scss */
+  /* line 333, /Users/simon/Development/Projects/simon.engelhardt.io/source/stylesheets/app.css.scss */
   .columns.small-centered {
     float: none; } }
