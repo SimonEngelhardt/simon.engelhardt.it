@@ -190,6 +190,9 @@ header {
       }
     }
   }
+  @media print {
+    display: none;
+  }
 }
 
 .filters {
