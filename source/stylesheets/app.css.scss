@@ -142,9 +142,6 @@ header {
 
 .expand-button {
   display: block;
-  @media print {
-    display: none;
-  }
 }
 
 .extended-content {
@@ -152,11 +149,9 @@ header {
     .expand-button {
       margin-bottom: $paragraph-margin-bottom;
     }
-    > p {
-      @media print {
-        display: block !important;
-      }
-    }
+  }
+  @media print {
+    display: none;
   }
 }
 
