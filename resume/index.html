@@ -21,8 +21,7 @@
       <div class="small-12 medium-10 large-9 small-centered columns">
         <header class="clearfix">
           <div class="profilepic">
-            <img data-interchange="[//www.gravatar.com/avatar/1cc9b1b957145a8edec95d593b480367?s=100, (default)], [//www.gravatar.com/avatar/1cc9b1b957145a8edec95d593b480367?s=200, (retina)]" alt="Simon Engelhardt" />
-            <noscript><img src="//www.gravatar.com/avatar/1cc9b1b957145a8edec95d593b480367?s=100" alt="Simon Engelhardt" /></noscript>
+            <img src="//www.gravatar.com/avatar/1cc9b1b957145a8edec95d593b480367?s=200" alt="Simon Engelhardt" />
           </div>
           <h1>
             Simon Engelhardt
@@ -77,14 +76,6 @@
         <span class="meter"></span>
       </div>
     </dd>
-    <dd data-magellan-arrival="projects">
-      <a href="#projects">
-        Selected Projects
-      </a>
-      <div class="progress" dir="rtl">
-        <span class="meter"></span>
-      </div>
-    </dd>
   </dl>
 </div>
 <div ng-app="resumeApp" ng-cloak>
@@ -108,7 +99,7 @@
   <div id="education" ng-controller="EducationCtrl" class="section" data-magellan-destination="education" se-scroll-progress-meter='[data-magellan-arrival="education"] .progress .meter'>
     <h2>Education</h2>
     <ul class="no-bullet">
-      <li ng-repeat="education in educations" class="education">
+      <li ng-repeat="education in educations" class="education" ng-class="{'hide-for-print': education.secondary}">
         <h3>
           {{education.degree}}, {{education.field}}
           <small><a href="{{education.url}}" target="_blank">{{education.school}}</a></small>
@@ -136,7 +127,7 @@
     <ul class="no-bullet">
       <li class="fi-marker" title="Location">
         <div class="location">
-          New York City <small>Authorized to work in the US</small>
+          Copenhagen, Denmark
         </div>
       </li>
       <li class="fi-power" title="Birthday">
@@ -145,7 +136,7 @@
       <li class="fi-male-female" title="Maritial Status">
         Married
       </li>
-      <li class="fi-flag" title="Languages">
+      <li class="fi-comments" title="Languages">
         <ul class="languages no-bullet">
           <li>
             English, Danish <small>Native or bilingual proficiency</small>
@@ -159,60 +150,6 @@
         </ul>
       </li>
     </ul>
-  </div>
-  <div id="projects" ng-controller="ProjectsCtrl" class="section" data-magellan-destination="projects" se-scroll-progress-meter='[data-magellan-arrival="projects"] .progress .meter'>
-    <h2>Selected Projects</h2>
-    <form class="filters">
-      <label>
-        Filter by my role<br/>
-        <select ng-model="selectedRole" ng-options="role for role in roles" class="large-4 medium-5"></select>
-      </label>
-    </form>
-    <ul class="no-bullet">
-      <li ng-repeat="project in projects | filter:roleFilter" class="project">
-        <h3>{{project.client}} <small>{{project.title}}</small></h3>
-        <small class="url">
-          <a href="{{project.url}}" target="_blank" title="{{project.urlnote}}">
-            <img ng-if="project.icon" ng-src="{{project.icon}}" alt="Web site icon">
-            {{project.url}}
-          </a>
-        </small>
-        <div class="timeline" ng-show="project.years">
-          <span ng-repeat="year in allYears" class="year" ng-style="{width: 100/allYears.length + '%'}" ng-class="{active: project.years.indexOf(year) !== -1, first: project.years.indexOf(year) === 0, last: project.years.indexOf(year) === project.years.length - 1}">{{year}}</span>
-        </div>
-        <p ng-bind-html="project.description"></p>
-        <div ng-if="project.extendeddescription" class="extended-content" ng-class="{'collapsed': !project.extendedDescriptionVisible}">
-          <a ng-click="project.extendedDescriptionVisible = !project.extendedDescriptionVisible" trigger-scroll-onclick class="expand-button">
-            <i class="fa" ng-class="{'fa-angle-right': !project.extendedDescriptionVisible, 'fa-angle-down': project.extendedDescriptionVisible}"></i>
-            Further description
-          </a>
-          <p ng-show="project.extendedDescriptionVisible" ng-bind-html="project.extendeddescription"></p>
-        </div>
-        <h4>My Roles</h4>
-        <p class="tags">
-          <span ng-repeat="role in project.roles" class="label secondary">
-            {{role}}
-          </span>
-        </p>
-        <h4>Tech</h4>
-        <p class="tags">
-          <span ng-repeat="tech in project.techAndServices" class="label secondary">
-            {{tech}}
-          </span>
-        </p>
-      </li>
-    </ul>
-    <div id="skill-drop" data-dropdown-content class="f-dropdown content skill">
-      <strong>
-        {{selectedSkill.name}}
-        <small>{{selectedSkill.category}}</small>
-      </strong>
-      Level <odometer value="selectedSkill.level || 0"></odometer> / {{maxSkillLevel}}
-      <div class="progress">
-        <span class="meter" ng-style="{width: selectedSkill.level / maxSkillLevel * 100 + '%'}"></span>
-      </div>
-      <a href="/resume/skills?highlight={{selectedSkill.name}}#{{removeWhiteSpace(selectedSkill.category)}}" target="_self">Show all skills</a>
-    </div>
   </div>
 </div>
 

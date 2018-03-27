@@ -125,13 +125,13 @@ resumeApp.controller('ProjectsCtrl', ['$scope', 'sheets', 'constants', 'scroll',
       return skills.some(function(skill) {
         return skill.name === name;
       });
-    }
+    };
 
     $scope.selectSkill = function(name) {
       $scope.selectedSkill = skills.filter(function(skill) {
         return skill.name === name;
       })[0];
-    }
+    };
   });
 
   $scope.roleFilter = function(project){
@@ -175,7 +175,7 @@ resumeApp.factory('sheets', ['$http', '$location', function($http, $location) {
     var objects = data.feed.entry.map(function(entry) {
       var object = {};
 
-      for (key in entry) {
+      for (var key in entry) {
         if (key.indexOf(keyPrefix) === 0) {
           var value = entry[key][valuePropertyName];
 
@@ -226,10 +226,10 @@ resumeApp.factory('scroll', ['$location', '$timeout', '$anchorScroll', function(
         // Queue a scroll to anchor after the digest cycle
         $timeout(function() {
           $anchorScroll();
-        })
+        });
       }
     }
-  }
+  };
 }]);
 
 resumeApp.factory('util', [function() {
@@ -237,7 +237,7 @@ resumeApp.factory('util', [function() {
     removeWhiteSpace: function(str) {
       return angular.isString(str) ? str.replace(/\s/g, '') : str;
     }
-  }
+  };
 }]);
 
 // This directive will trigger a scroll event on the window when the element is clicked
