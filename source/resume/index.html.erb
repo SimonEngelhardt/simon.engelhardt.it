@@ -60,7 +60,7 @@ subtitle: Résumé
   <div id="education" ng-controller="EducationCtrl" class="section" data-magellan-destination="education" se-scroll-progress-meter='[data-magellan-arrival="education"] .progress .meter'>
     <h2>Education</h2>
     <ul class="no-bullet">
-      <li ng-repeat="education in educations" class="education">
+      <li ng-repeat="education in educations" class="education" ng-class="{'hide-for-print': education.secondary}">
         <h3>
           {{education.degree}}, {{education.field}}
           <small><a href="{{education.url}}" target="_blank">{{education.school}}</a></small>
