@@ -1,0 +1,66 @@
+---
+title: Simon Engelhardt
+subtitle: Résumé
+---
+
+<div ng-app="resumeApp">
+  <div id="projects" ng-controller="ProjectsCtrl" class="section" data-magellan-destination="projects" se-scroll-progress-meter='[data-magellan-arrival="projects"] .progress .meter'>
+    <ul class="breadcrumbs">
+      <li><a href="/" target="_self">Home</a></li>
+      <li><a href="/resume" target="_self">Résumé</a></li>
+      <li class="current"><a href="/resume/projects" target="_self">Projects</a></li>
+    </ul>
+    <h2>Selected Projects</h2>
+    <form class="filters">
+      <label>
+        Filter by my role<br/>
+        <select ng-model="selectedRole" ng-options="role for role in roles" class="large-4 medium-5"></select>
+      </label>
+    </form>
+    <ul class="no-bullet">
+      <li ng-repeat="project in projects | filter:roleFilter" class="project">
+        <h3>{{project.client}} <small>{{project.title}}</small></h3>
+        <small class="url">
+          <a href="{{project.url}}" target="_blank" title="{{project.urlnote}}">
+            <img ng-if="project.icon" ng-src="{{project.icon}}" alt="Web site icon">
+            {{project.url}}
+          </a>
+        </small>
+        <div class="timeline" ng-show="project.years">
+          <span ng-repeat="year in allYears" class="year" ng-style="{width: 100/allYears.length + '%'}" ng-class="{active: project.years.indexOf(year) !== -1, first: project.years.indexOf(year) === 0, last: project.years.indexOf(year) === project.years.length - 1}">{{year}}</span>
+        </div>
+        <p ng-bind-html="project.description"></p>
+        <div ng-if="project.extendeddescription" class="extended-content" ng-class="{'collapsed': !project.extendedDescriptionVisible}">
+          <a ng-click="project.extendedDescriptionVisible = !project.extendedDescriptionVisible" trigger-scroll-onclick class="expand-button">
+            <i class="fa" ng-class="{'fa-angle-right': !project.extendedDescriptionVisible, 'fa-angle-down': project.extendedDescriptionVisible}"></i>
+            Further description
+          </a>
+          <p ng-show="project.extendedDescriptionVisible" ng-bind-html="project.extendeddescription"></p>
+        </div>
+        <h4>My Roles</h4>
+        <p class="tags">
+          <span ng-repeat="role in project.roles" class="label secondary">
+            {{role}}
+          </span>
+        </p>
+        <h4>Tech</h4>
+        <p class="tags">
+          <span ng-repeat="tech in project.techAndServices" class="label secondary">
+            {{tech}}
+          </span>
+        </p>
+      </li>
+    </ul>
+    <div id="skill-drop" data-dropdown-content class="f-dropdown content skill">
+      <strong>
+        {{selectedSkill.name}}
+        <small>{{selectedSkill.category}}</small>
+      </strong>
+      Level <odometer value="selectedSkill.level || 0"></odometer> / {{maxSkillLevel}}
+      <div class="progress">
+        <span class="meter" ng-style="{width: selectedSkill.level / maxSkillLevel * 100 + '%'}"></span>
+      </div>
+      <a href="/resume/skills?highlight={{selectedSkill.name}}#{{removeWhiteSpace(selectedSkill.category)}}" target="_self">Show all skills</a>
+    </div>
+  </div>
+</div>
