@@ -118,7 +118,7 @@ header {
 .section {
   margin-bottom: rem-calc(30);
   @media print {
-    margin-bottom: rem-calc(25);
+    margin-bottom: rem-calc(15);
   }
   border-bottom: $hr-border-width $hr-border-style $hr-border-color;
   h2 {
@@ -130,13 +130,28 @@ header {
   margin-bottom: 2 * $paragraph-margin-bottom;
   h3 {
     line-height: 1.1;
+    @media print {
+      margin-bottom: 0.25rem;
+    }
+  }
+  p, strong {
+    @media print {
+      font-size: 0.75rem;
+      margin-bottom: 0.5rem;
+    }
   }
   .details {
     color: scale-color($body-font-color, $lightness: 35%);
     font-size: 80%;
+    margin-bottom: 0.75rem;
+    @media print {
+      font-size: 60%;
+      margin-bottom: 0.5rem;
+    }
   }
   @media print {
     page-break-inside: avoid;
+    margin-bottom: $paragraph-margin-bottom;
   }
 }
 
@@ -242,6 +257,9 @@ header {
   .tags {
     .label {
       margin-right: 0.5em;
+      @media print {
+        margin-bottom: 0.5em;
+      }
     }
   }
 }
@@ -275,6 +293,12 @@ header {
   @media #{$medium-up}, print {
     ul {
       @include inline-list;
+    }
+  }
+  @media print {
+    ul {
+      font-size: 0.75rem;
+      margin-bottom: 0.5rem;
     }
   }
   & > ul {
@@ -324,7 +348,7 @@ noscript {
     text-decoration: none;
   }
   @page {
-    margin: 0.75in;
+    margin: 0.6in;
   }
 
   // Printing page breaks do not work properly in Chrome for floated elements (see http://stackoverflow.com/a/5314590) and Foundation's small-centered only set float: none; for the screen media
