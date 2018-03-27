@@ -119,6 +119,9 @@ header {
   margin-bottom: rem-calc(30);
   @media print {
     margin-bottom: rem-calc(15);
+    &:last-child {
+      margin-bottom: 0;
+    }
   }
   border-bottom: $hr-border-width $hr-border-style $hr-border-color;
   h2 {
